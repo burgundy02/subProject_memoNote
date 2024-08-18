@@ -14,4 +14,8 @@ public class TodoService {
     public int registerTodo(ReqRegisterTodoDto dto) {
         return todoMapper.save(dto.toEntity());
     }
+
+    public boolean deleteMemoById(int id) {
+        return todoMapper.delete(id) > 0;
+    }
 }
