@@ -8,6 +8,7 @@ import com.project.memorization_note.repository.MemoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,7 +35,7 @@ public class MemoService {
 
     public List<RespGetMemoDto> getMemos() {
         List<Memo> memos = memoMapper.getMemos();
-        List<RespGetMemoDto> dtos = null;
+        List<RespGetMemoDto> dtos = new ArrayList<>();
 
         for(Memo memo : memos) {
             RespGetMemoDto dto = RespGetMemoDto.builder()
