@@ -11,4 +11,11 @@
         values
             (0, #{question}, #{answer}, #{explain}, now(). now())
     </insert>
+    <delete id="delete">
+        delete
+        from
+            memo_tb
+        where
+            memoId = #{memoId}
+    </delete>
 </mapper>

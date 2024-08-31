@@ -18,4 +18,6 @@ public class Todo {
     private String explain;
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
+
+
 }
