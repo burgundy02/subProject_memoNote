@@ -32,4 +32,32 @@
         where
             memoId = #{memoId}
     </delete>
+
+<!--    단건조회-->
+    <select id="getMemo" resultType="com.project.memorization_note.entity.Memo">
+        select
+            memoId,
+            question,
+            answer,
+            explainMemo,
+            registerDate,
+            updateDate
+        from
+            memo_tb
+        where
+            memoId = #{memoId}
+    </select>
+
+<!--    다건조회-->
+    <select id="getMemos" resultType="com.project.memorization_note.entity.Memo">
+        select
+            memoId,
+            question,
+            answer,
+            explainMemo,
+            registerDate,
+            updateDate
+        from
+            memo_tb
+    </select>
 </mapper>
