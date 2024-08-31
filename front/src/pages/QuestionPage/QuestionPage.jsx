@@ -2,12 +2,12 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from './style';
 
-function ClickToggle(props) {
+function QuestionPage(props) {
     return (
-        <div css={s.layout}>
-        
+        <div>
+            
         </div>
     );
 }
 
-export default ClickToggle;
+export default QuestionPage;

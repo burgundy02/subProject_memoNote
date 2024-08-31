@@ -1,14 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
 import { Global } from '@emotion/react';
 import { reset } from './styles/common';
-import ClickTogglePage from './pages/ClickTogglePage/ClickTogglePage';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
+import QuestionPage from './pages/QuestionPage/QuestionPage';
 
 function App() {
   return (
     <>
-    <Global styles={reset} />
-    <ClickTogglePage />
+      <Global styles={reset} />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/question' element={<QuestionPage />} />
+      </Routes>
+    
     </>
   );
 }
