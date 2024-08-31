@@ -11,5 +11,8 @@ public class Dto {
         private int successCount;
         private String message;
     }
+
+
+
 }
 

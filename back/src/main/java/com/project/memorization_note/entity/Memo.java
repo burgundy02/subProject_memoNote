@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Todo {
+public class Memo {
     private int memoId;
     private String question;
     private String answer;
-    private String explain;
+    private String explainMemo;
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
 
