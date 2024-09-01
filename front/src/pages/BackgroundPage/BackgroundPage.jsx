@@ -2,12 +2,14 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from './style';
 
-function MainLayoutPage(props) {
+function BackgroundPage({ children }) {
     return (
         <div css={s.mainLayout}>
-            <div css={s.box}></div>
+            <div css={s.box}>
+                {children}
+            </div>
         </div>
     );
 }
 
-export default MainLayoutPage;
+export default BackgroundPage;
