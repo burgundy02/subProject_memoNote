@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 function RegisterMemoPage(props) {
     const navigate = useNavigate();
 
-    const handleBackClick = () => {
+    const handleBackButtonOnClick = () => {
         navigate("/");
     }
 
     return (
         <div css={s.layout}>
             <div css={s.buttonBox}>
-                <button onClick={handleBackClick}>취소</button>
+                <button onClick={handleBackButtonOnClick}>취소</button>
             </div>
             <h4>✏️단어 추가</h4>
             <div css={s.inputBox}>
