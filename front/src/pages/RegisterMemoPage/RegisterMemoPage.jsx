@@ -17,6 +17,11 @@ function RegisterMemoPage(props) {
             </div>
             <h4>✏️단어 추가</h4>
             <div css={s.inputBox}>
+                {/* <div css={yy}>
+                    <span>단어</span>
+                    <input type="text" />
+                </div>
+                 */}
                 <input type="text" placeholder="단어" />
                 <input type="text" placeholder="뜻" />
                 <textarea name="" id="" placeholder="예제"></textarea>
