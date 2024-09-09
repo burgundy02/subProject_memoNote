@@ -3,13 +3,11 @@ import { css } from "@emotion/react";
 export const layout = css`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    border-radius: 30px;
     padding: 30px;
-    width: 1500px;
-    height: 850px;
+    width: 100%;
+    height: 100%;
 
     h4 {
         margin-top: 30px;
@@ -19,75 +17,110 @@ export const layout = css`
     }
 `;
 
-export const buttonBox = css`
+export const backButtonBox = css`
     display: flex;
+    padding-left: 20px;
     width: 100%;
 
-    button {
-        box-sizing: border-box;
+    & > button{ 
         font-size: 24px;
     }
 `;
 
-export const inputBox = css`
+export const titleBox = css`
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    border-bottom: 2px solid #dbdbdb;
+    width: 90%;
+`;
+
+export const box = css`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border-top: 2px solid #dbdbdb;
-    width: 65%;
+    margin: 100px 0px 50px;
+    padding: 20px;
+    width: 100%;
+`;
+
+export const inputBox1 = css`
+    display: flex;
+    justify-content: center;
+    width: 100%;
     height: 85%;
 
-    input {
+    & > span {
         box-sizing: border-box;
-        border: none;
+        font-size: 24px;
+        margin: auto 0;
+        cursor: default;
+    }
+
+    & > div {
+        box-sizing: border-box;
         border-bottom: 1px solid #dbdbdb;
-        margin: 10px;
-        padding: 30px;
-        width: 600px;
-        height: 80px;
-        outline: none;
-        font-size: 24px;
-        color: #dbdbdb;
-        background-color: #1b386a;
-        cursor: pointer;
+        margin-left: 20px;
+        width: 35%;
 
-        &::placeholder {
+        & > input {
+            box-sizing: border-box;
+            border: none;
+            padding: 30px;
+            width: 100%;
+            height: 80px;
+            outline: none;
+            font-size: 24px;
             color: #dbdbdb;
-            font-size: 24;
+            background-color: #1b386a;
+            cursor: pointer;
         }
     }
 
-    textarea {
+`;
+
+export const inputBox2 = css`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 85%;
+
+    & > span {
         box-sizing: border-box;
-        border: none;
+        font-size: 24px;
+        margin: auto 0;
+        cursor: default;
+    }
+
+    & > div {
+        box-sizing: border-box;
         border-bottom: 1px solid #dbdbdb;
-        margin: 30px;
-        padding: 30px;
-        width: 600px;
-        height: 100px;
-        outline: none;
-        font-size: 24px;
-        color: #dbdbdb;
-        resize: none;
-        background-color: #1b386a;
-        cursor: pointer;
-        overflow-y: auto;
+        margin-left: 20px;
+        width: 50%;
 
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
-        &::placeholder {
+        & > textarea {
+            box-sizing: border-box;
+            border: none;
+            margin: 30px 0px;
+            padding: 30px;
+            width: 100%;
+            height: 100px;
+            outline: none;
+            font-size: 24px;
             color: #dbdbdb;
-            font-size: 24;
+            resize: none;
+            background-color: #1b386a;
+            cursor: pointer;
+            overflow-y: auto;
+    
+            &::-webkit-scrollbar {
+                display: none;
+            }
         }
     }
 
-    button {
-        box-sizing: border-box;
-        margin-top: 20px;
-        width: 800px;
-        font-size: 24px;
-    }
+`;
+
+export const addButton = css`
+    font-size: 24px;
 `;
