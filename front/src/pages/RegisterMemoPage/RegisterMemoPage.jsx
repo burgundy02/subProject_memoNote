@@ -2,6 +2,16 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
 import { useNavigate } from 'react-router-dom';
+import { css } from '@emotion/react';
+const yy =css`
+box-sizing: border-box;
+display: flex;
+border-bottom: 1px solid #dbdbdb;
+&>input{
+    border: none;
+}
+
+`;
 
 function RegisterMemoPage(props) {
     const navigate = useNavigate();
