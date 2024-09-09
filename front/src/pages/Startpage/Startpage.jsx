@@ -4,19 +4,23 @@ import * as s from './style';
 import { useNavigate } from 'react-router-dom';
 
 function Startpage(props) {
-    // 상태
-    const navigate = useNavigate();
+    // // 상태
+    // const navigate = useNavigate();
 
-    const handleLogoOnClick = () => {
-        navigate("/");
-    }
+    // const handleLogoOnClick = () => {
+    //     navigate("/");
+    // }
 
     return (
         <div css={s.layout}>
             <div css={s.logoBox}>
                 <div>
-                    <h3 onClick={handleLogoOnClick}>LOGO</h3>
+                    <h3>LOGO</h3>
                 </div>
+            </div>
+            <div css={s.buttonBox}> 
+                <button>취소</button>
+                <button>다시 풀기</button>
             </div>
             <div css={s.mainBox}>
                 <div css={s.titleBox}>
@@ -41,3 +45,4 @@ function Startpage(props) {
 }
 
 export default Startpage;
+

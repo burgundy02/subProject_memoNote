@@ -8,6 +8,8 @@ export const layout = css`
 export const logoBox = css`
     display: flex;
     justify-content: center;
+    height: 60px;
+
     // 자식 요소 div
     & > div {
         display: flex;
@@ -17,16 +19,28 @@ export const logoBox = css`
         border-bottom: 2px solid #dbdbdb;
         margin-bottom: 60px;
         width: 100%;
+        height: 70px;
 
         & > h3 {
-            cursor: pointer;
-            // h3를 hover했을 때 크기가 커짐
+            cursor: default;
+            /* // h3를 hover했을 때 크기가 커짐
             &:hover {
                 transform: scale(1.1);
-            }
+            } */
         }
     }
 
+`;
+
+export const buttonBox = css`
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 60px;
+
+    & > button {
+        font-size: 24px;
+    }
 `;
 
 export const mainBox = css`
@@ -99,10 +113,4 @@ export const answerBox = css`
         }
     }
     
-
-    
-
-
 `;
-
-
