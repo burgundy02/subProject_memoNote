@@ -25,7 +25,7 @@ export const buttonBox = css`
 
     button {
         box-sizing: border-box;
-        font-size: 20px;
+        font-size: 24px;
     }
 `;
 
@@ -47,13 +47,14 @@ export const inputBox = css`
         width: 600px;
         height: 80px;
         outline: none;
-        font-size: 20px;
+        font-size: 24px;
         color: #dbdbdb;
         background-color: #1b386a;
         cursor: pointer;
 
         &::placeholder {
             color: #dbdbdb;
+            font-size: 24;
         }
     }
 
@@ -66,7 +67,7 @@ export const inputBox = css`
         width: 600px;
         height: 100px;
         outline: none;
-        font-size: 20px;
+        font-size: 24px;
         color: #dbdbdb;
         resize: none;
         background-color: #1b386a;
@@ -79,6 +80,7 @@ export const inputBox = css`
 
         &::placeholder {
             color: #dbdbdb;
+            font-size: 24;
         }
     }
 
@@ -86,6 +88,6 @@ export const inputBox = css`
         box-sizing: border-box;
         margin-top: 20px;
         width: 800px;
-        font-size: 20px;
+        font-size: 24px;
     }
 `;
