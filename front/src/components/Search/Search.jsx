@@ -16,8 +16,7 @@ function Search({ children }) {
     const [errorMessage, setErrorMessage] = useState("");
     const [data, setData] = useState(null);
 
-    const [searchType, setSearchType] = useState('question');  // 검색 유형
-    const [isOptionsOpen, setIsOptionsOpen] = useState(false);  // 검색 옵션 창 열림 여부
+    const [searchType, setSearchType] = useState('all');  // 검색 유형
 
     // useEffect(() => {
     //     // isSearchOpen 또는 다른 상태 변경 시 실행할 코드
@@ -76,29 +75,6 @@ function Search({ children }) {
 
     };
 
-
-    // const searchQuestionSubmitButton = async () => {
-    //     try {
-    //         const response = await instance.get("/memo/search", searchMemo.question)
-    //         if(!response) {
-    //             alert("조회 가능한 데이터가 없습니다")
-    //         }
-    //     } catch(error) {
-
-    //     }
-    // }
-
-    // const searchAnswerSubmitButton = async () => {
-    //     try {
-    //         const response = await instance.get("/memo/search", searchMemo.answer)
-    //         if(!response) {
-    //             alert("조회 가능한 데이터가 없습니다")
-    //         }
-    //     } catch(error) {
-
-    //     }
-    // }
-
     return (
         <div css={s.layout}>
             <header css={s.mainHeader}>
@@ -106,9 +82,9 @@ function Search({ children }) {
                 <div css={s.searcInputhBox}>
                     <input type="text"
                         placeholder='검색어를 입력해 주세요'
-                        name="question"
+                        name={searchType === 'all' ? 'question' : searchType}  // 기본 검색 유형에 따라 name 설정
                         onChange={handleOnChange}
-                        value={searchMemo.question}
+                        value={searchType === 'question' ? searchMemo.question : searchType === 'answer' ? searchMemo.answer : ''}  // 기본 검색 유형에 따라 value 설정
                     />
                     <button>
                         <FaSearch />
@@ -123,9 +99,9 @@ function Search({ children }) {
 
                 </div>
                 <div css={s.searchButton}>
-                    <button onClick={() => searchSubmitButtonOnClick("all")}>통합검색</button>
+                    {/* <button onClick={searchSubmitButtonOnClick}>통합검색</button>
                     <button onClick={() => searchSubmitButtonOnClick("question")}>문제 이름으로 조회</button>
-                    <button onClick={() => searchSubmitButtonOnClick("answer")}>정답 이름으로 조회</button>
+                    <button onClick={() => searchSubmitButtonOnClick("answer")}>정답 이름으로 조회</button> */}
                 </div>
             </header>
             <div css={s.container}>
