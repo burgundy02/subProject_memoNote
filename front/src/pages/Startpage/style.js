@@ -33,8 +33,6 @@ export const logoBox = css`
 `;
 
 export const buttonBox = css`
-    display: flex;
-    justify-content: space-between;
     box-sizing: border-box;
     height: 60px;
 
