@@ -13,13 +13,12 @@ function Startpage(props) {
 
     return (
         <div css={s.layout}>
-            <div css={s.logoBox}>
+            {/* <div css={s.logoBox}>
                 <div>
                     <h3>LOGO</h3>
                 </div>
-            </div>
+            </div> */}
             <div css={s.buttonBox}> 
-                <button onClick={handleButtonOnClick}>취소</button>
                 <button>다시 풀기</button>
             </div>
             <div css={s.mainBox}>
