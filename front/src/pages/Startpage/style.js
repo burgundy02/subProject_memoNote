@@ -52,6 +52,11 @@ export const mainBox = css`
     border-radius: 30px;
     width: 1390px;
     height: 700px;
+    cursor: pointer;
+    
+    &:hover h5{
+                transform: scale(1.1);
+            }
 `;
 
 export const titleBox = css`
@@ -68,7 +73,7 @@ export const titleBox = css`
         border-bottom: 1px solid #dbdbdb;
         height: 115px;
 
-        & > h5 {
+        & > h4 {
             cursor: default;
         }
     }
@@ -106,9 +111,9 @@ export const answerBox = css`
             box-sizing: border-box;
             margin: 10px 0px 0px;
             cursor: pointer;
-            &:hover {
+            /* &:hover {
                 transform: scale(1.1);
-            }
+            } */
 
         }
     }
