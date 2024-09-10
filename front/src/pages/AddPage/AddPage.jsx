@@ -3,7 +3,7 @@ import React from 'react';
 import * as s from "./style";
 import { useNavigate } from 'react-router-dom';
 
-function RegisterMemoPage(props) {
+function AddPage(props) {
     const navigate = useNavigate();
 
     const handleBackButtonOnClick = () => {
@@ -45,4 +45,4 @@ function RegisterMemoPage(props) {
     );
 }
 
-export default RegisterMemoPage;
+export default AddPage;
