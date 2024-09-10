@@ -2,7 +2,6 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
 import { useNavigate } from 'react-router-dom';
-import { css } from '@emotion/react';
 
 function RegisterMemoPage(props) {
     const navigate = useNavigate();

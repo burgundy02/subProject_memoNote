@@ -76,7 +76,6 @@ export const inputBox1 = css`
             cursor: pointer;
         }
     }
-
 `;
 
 export const inputBox2 = css`
@@ -118,7 +117,6 @@ export const inputBox2 = css`
             }
         }
     }
-
 `;
 
 export const addButton = css`
