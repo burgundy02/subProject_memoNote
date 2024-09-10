@@ -15,6 +15,8 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/memo/start' element={<Startpage />} />
           <Route path='/memo/add' element={<RegisterMemoPage />} />
+
+          <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
       </BackgroundPage>
     </>
