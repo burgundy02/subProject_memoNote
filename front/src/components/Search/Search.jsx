@@ -7,11 +7,12 @@ import { instance } from '../../apis/util/instance';
 import ScrollableResults from '../ScrollableResults/ScrollableResults';
 
 
-function Search({ children }) {
+function Search(props) {
 
     const [searchMemo, setSearchMemo] = useState({
         question: "",
         answer: "",
+        all: "",
     });
     const [errorMessage, setErrorMessage] = useState("");
     const [data, setData] = useState(null);
@@ -22,30 +23,36 @@ function Search({ children }) {
     //     // isSearchOpen 또는 다른 상태 변경 시 실행할 코드
     // }, [isSearchOpen]);
 
-    const handleOnChange = (e) => { // 검색어 입력하는거
-        setSearchMemo({
-            ...searchMemo,
-            [e.target.name]: e.target.value
-        });
+    const handleOnChange = (e) => { // 검색어 입력
+        const { name, value } = e.target;
+        if (searchType === 'all') {
+            // 'all'일 때는 두 필드 모두 업데이트
+            setSearchMemo(memo => ({
+                ...memo,
+                all: value
+            }));
+        } else {
+            // 'question' 또는 'answer'일 때 해당 필드만 업데이트
+            setSearchMemo(memo => ({
+                ...memo,
+                [searchType]: value
+            }));
+        }
+        console.log(value)
     };
 
     const searchSubmitButtonOnClick = async () => {
         try {
             let query;
-
-            switch (searchType) {
-                case "question":
-                    query = searchMemo.question;
-                    break;
-                case "answer":
-                    query = searchMemo.answer;
-                    break;
-                case "all":
-                    query = searchMemo;
-                    break;
-                default:
-                    alert("유효하지 않은 검색입니다.")
-                    return;
+            if (searchType === 'all') {
+                // 전체 조회 시
+                query = {
+                    question: searchMemo.all,
+                    answer: searchMemo.all
+                };
+            } else {
+                // 특정 검색 유형일 때
+                query = searchMemo[searchType];
             }
 
             const response = await instance.get("/memo/search", {
@@ -71,7 +78,7 @@ function Search({ children }) {
     const handleDelete = (item, index) => {
         console.log("삭제 버튼 클릭됨:", item);
         const updatedData = data.filter((_, i) => i !== index);
-        setData(updatedData); 
+        setData(updatedData);
 
     };
 
@@ -80,13 +87,14 @@ function Search({ children }) {
             <header css={s.mainHeader}>
                 <h2>조회 페이지</h2>
                 <div css={s.searcInputhBox}>
-                    <input type="text"
+                    <input
+                        type="text"
                         placeholder='검색어를 입력해 주세요'
-                        name={searchType === 'all' ? 'question' : searchType}  // 기본 검색 유형에 따라 name 설정
+                        name={searchType}
                         onChange={handleOnChange}
-                        value={searchType === 'question' ? searchMemo.question : searchType === 'answer' ? searchMemo.answer : ''}  // 기본 검색 유형에 따라 value 설정
-                    />
-                    <button>
+                        value={searchMemo[searchType]}  // 'all'일 때는 searchMemo.all, 아니면 해당 필드값
+                        />
+                    <button onClick={searchSubmitButtonOnClick}>
                         <FaSearch />
                     </button>
 
@@ -113,7 +121,7 @@ function Search({ children }) {
 
                     {
                         data &&
-                        <ScrollableResults data={data} onEdit={handleEdit} onDelete={handleDelete}  />
+                        <ScrollableResults data={data} onEdit={handleEdit} onDelete={handleDelete} />
                     }
                 </div>
             </div>

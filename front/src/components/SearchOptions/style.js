@@ -1,12 +1,14 @@
 import { css } from "@emotion/react";
 
 export const searchOption = css`
-    position: absolute;
-    top: 60px;
-    right: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size : 25px;
+
+    & select {
+        font-size: 15px;
+        margin-top: 5px;
+    }
 `;

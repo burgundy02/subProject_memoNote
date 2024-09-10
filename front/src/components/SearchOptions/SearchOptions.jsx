@@ -1,24 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
+import * as s from './style';
 
-const searchOption = css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size : 25px;
-
-    & select {
-        font-size: 15px;
-        margin-top: 5px;
-    }
-`;
 
 const SearchOptions = ({ searchType, setSearchType }) => {
     return (
         <div>
-            <label css={searchOption}>
+            <label css={s.searchOption}>
                 검색 유형 선택
                 <select value={searchType} onChange={(e) => setSearchType(e.target.value)}>
                     <option value="question">질문</option>
