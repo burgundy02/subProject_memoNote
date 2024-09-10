@@ -19,6 +19,7 @@ function Startpage(props) {
                 </div>
             </div> */}
             <div css={s.buttonBox}> 
+                <button onClick={handleButtonOnClick}>취소</button>
                 <button>다시 풀기</button>
             </div>
             <div css={s.mainBox}>

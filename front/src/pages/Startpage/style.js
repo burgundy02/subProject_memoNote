@@ -33,6 +33,8 @@ export const logoBox = css`
 `;
 
 export const buttonBox = css`
+    display: flex;
+    justify-content: space-between;
     box-sizing: border-box;
     height: 60px;
 
@@ -49,7 +51,7 @@ export const mainBox = css`
     border: 1px solid white;
     border-radius: 30px;
     width: 1390px;
-    height: 650px;
+    height: 700px;
 `;
 
 export const titleBox = css`
