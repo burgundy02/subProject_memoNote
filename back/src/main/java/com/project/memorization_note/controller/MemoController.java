@@ -32,6 +32,11 @@ public class MemoController {
         return ResponseEntity.ok().body(memoService.updateMemo(dto));
     }
 
+    @GetMapping("/memo")
+    public ResponseEntity<?> getRandomMemo() {
+        return ResponseEntity.ok().body(memoService.getRandomMemo());
+    }
+
     @GetMapping("/memo/{memoId}")
     public ResponseEntity<?> getMemo(@PathVariable int memoId) {
         return ResponseEntity.ok().body(memoService.getMemoById(memoId));
