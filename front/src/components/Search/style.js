@@ -4,7 +4,7 @@ export const layout = css`
     width: 100%;
 `;
 
-export const mainBox = css`
+export const mainHeader = css`
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -13,7 +13,7 @@ export const mainBox = css`
     width: 100%;
 `;
 
-export const searchBox = css`
+export const searcInputhBox = css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,9 +28,31 @@ export const searchBox = css`
     }
     & button {
         border: none;
+        font-size: 30px;
     }
 `;
 
-export const container = css`
+export const searchButton = css`
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+    & > :not(:nth-last-of-type(1))::after { // 이거 맞나?????
+            display: inline-block;
+            content: "";
+            margin: 0px 5px;
+            height: 60%;
+        }
+`;
+
+export const container = css` // 그냥 박스
+
+`;
+
+export const mainBox = css` // 데이터 조회 될 박스 - 여러개 나옴
+
+`;
+
+export const searchOptions = css`
 
 `;

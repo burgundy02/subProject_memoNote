@@ -3,76 +3,129 @@ import { FaSearch } from "react-icons/fa";
 /** @jsxImportSource @emotion/react */
 import * as s from './style';
 import SearchOptions from '../SearchOptions/SearchOptions';
+import { instance } from '../../apis/util/instance';
+import ScrollableResults from '../ScrollableResults/ScrollableResults';
 
 
-function Search({ children }) {
-
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
+function Search(props) {
 
     const [searchMemo, setSearchMemo] = useState({
         question: "",
         answer: "",
+        all: "",
     });
+    const [errorMessage, setErrorMessage] = useState("");
+    const [data, setData] = useState(null);
 
-    const [searchType, setSearchType] = useState('question');  // 검색 유형
-    const [isOptionsOpen, setIsOptionsOpen] = useState(false);  // 검색 옵션 창 열림 여부
+    const [searchType, setSearchType] = useState('all');  // 검색 유형
 
     // useEffect(() => {
     //     // isSearchOpen 또는 다른 상태 변경 시 실행할 코드
     // }, [isSearchOpen]);
 
-    const handleSearchButtonClick = () => {
-        if (!searchMemo.question.trim()) {
-            // 검색창이 비어있으면 전체 조회
-            console.log("전체 조회 실행");
-        } else if (searchType === 'question') {
-            // 문제 이름으로 검색
-            console.log("문제 이름으로 검색:", searchMemo.question);
-        } else if (searchType === 'answer') {
-            // 정답 이름으로 검색
-            console.log("정답 이름으로 검색:", searchMemo.question);
+    const handleOnChange = (e) => { // 검색어 입력
+        const { name, value } = e.target;
+        if (searchType === 'all') {
+            // 'all'일 때는 두 필드 모두 업데이트
+            setSearchMemo(memo => ({
+                ...memo,
+                all: value
+            }));
+        } else {
+            // 'question' 또는 'answer'일 때 해당 필드만 업데이트
+            setSearchMemo(memo => ({
+                ...memo,
+                [searchType]: value
+            }));
         }
-        setIsOptionsOpen(false);  // 검색 후 옵션 창 닫기
+        console.log(value)
     };
 
-    const handleIsSearchOpen = () => { // 상세검색 - 정답으로 검색(default), 문제로 검색, 달력 받아와서 날짜로 검색, 작성자로 검색(로그인 기능 추가 시)
-        setIsSearchOpen(true); // 처음에 true로 바꿔줌
+    const searchSubmitButtonOnClick = async () => {
+        try {
+            let query;
+            if (searchType === 'all') {
+                // 전체 조회 시
+                query = {
+                    question: searchMemo.all,
+                    answer: searchMemo.all
+                };
+            } else {
+                // 특정 검색 유형일 때
+                query = searchMemo[searchType];
+            }
 
+            const response = await instance.get("/memo/search", {
+                params: query,
+            });
 
-        setIsSearchOpen(false); // 동작이 끝나면 false로 바꿈
-    }
+            if (!response.data || response.data.length === 0) {
+                alert("조회 가능한 데이터가 없습니다")
+                setData(null);  // 데이터 초기화
+                return;
+            }
+            setData(response.data);  // 조회된 데이터 설정
+            setErrorMessage("");
+        } catch (error) {
+            setErrorMessage("데이터 조회 중 오류가 발생했습니다.");
+        }
+    };
 
-    const handleOnChange = (e) => { // 검색어 입력하는거
-        setSearchMemo({
-            ...searchMemo,
-            [e.target.name]: e.target.value
-        });
+    const handleEdit = (item, index) => {
+
+    };
+
+    const handleDelete = (item, index) => {
+        console.log("삭제 버튼 클릭됨:", item);
+        const updatedData = data.filter((_, i) => i !== index);
+        setData(updatedData);
+
     };
 
     return (
         <div css={s.layout}>
-            <header css={s.mainBox}>
+            <header css={s.mainHeader}>
                 <h2>조회 페이지</h2>
-                <div css={s.searchBox}>
-                    <input type="text"
+                <div css={s.searcInputhBox}>
+                    <input
+                        type="text"
                         placeholder='검색어를 입력해 주세요'
-                        name="question"
+                        name={searchType}
                         onChange={handleOnChange}
-                        value={searchMemo.question}
-                    />
-                    <button onClick={() => setIsSearchOpen(true)}>
+                        value={searchMemo[searchType]}  // 'all'일 때는 searchMemo.all, 아니면 해당 필드값
+                        />
+                    <button onClick={searchSubmitButtonOnClick}>
                         <FaSearch />
                     </button>
+
+                    <div css={s.searchOptions}>
+                        <SearchOptions
+                            searchType={searchType}
+                            setSearchType={setSearchType}
+                        />
+                    </div>
+
+                </div>
+                <div css={s.searchButton}>
+                    {/* <button onClick={searchSubmitButtonOnClick}>통합검색</button>
+                    <button onClick={() => searchSubmitButtonOnClick("question")}>문제 이름으로 조회</button>
+                    <button onClick={() => searchSubmitButtonOnClick("answer")}>정답 이름으로 조회</button> */}
                 </div>
             </header>
-                <SearchOptions
-                    isOpen={isSearchOpen}
-                    onRequestClose={() => setIsSearchOpen(false)}  // 모달 닫는 함수
-                    searchType={searchType}
-                    setSearchType={setSearchType}
-                    handleSearchButtonClick={handleSearchButtonClick}
-                />
+            <div css={s.container}>
+                <div css={s.mainBox}>
+                    {
+                        errorMessage &&
+                        <h2>{errorMessage}</h2>
+                    }
+
+                    {
+                        data &&
+                        <ScrollableResults data={data} onEdit={handleEdit} onDelete={handleDelete} />
+                    }
+                </div>
             </div>
+        </div>
     );
 }
 
