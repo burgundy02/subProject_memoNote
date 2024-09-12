@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from './style';
 import { useNavigate } from 'react-router-dom';
+import { useMutation, useQuery } from 'react-query';
+import { instance } from '../../apis/util/instance';
 
 function Startpage(props) {
     // 상태
@@ -9,9 +11,29 @@ function Startpage(props) {
     // useState: 배열이다, useState배열의 첫 번째 값은 상태, 두 번째 값은 setter함수 / toggle
     const [ toggle, setToggle ] = useState("question");
 
+    const question = useQuery(
+        ["questionQuery"],
+        async () => await instance.get("/memo"),
+        {
+            retry: 0,
+        }
+    );
+
+    const memoMutaion = useMutation(
+        async () => {
+            return await instance.get("/memo")
+        },
+        {
+            
+        }
+    );
 
     const handleButtonOnClick = () => {
         navigate("/");
+    }
+
+    const handleRandomButtonOnClick = () => {
+
     }
 
     const handleToggleOnClick = () => {
@@ -22,8 +44,6 @@ function Startpage(props) {
         }
         setToggle("question");
     }
-
-
 
     return (
         <div css={s.layout}>
@@ -42,12 +62,12 @@ function Startpage(props) {
                     <div css={s.titleBox}>
                         <div>
                             {/* 이모티콘: window + . */}
-                            <h4>영어단어의 뜻을 맞춰보세요😊</h4>
+                            <h4>문제를 맞춰보세요😊</h4>
                         </div>
                     </div>
                     <div css={s.middleBox}>
                         <p>
-                            문제 : fire
+                            문제 : {question?.data?.data.question}
                         </p>
                     </div>
                     <div css={s.answerBox}>
