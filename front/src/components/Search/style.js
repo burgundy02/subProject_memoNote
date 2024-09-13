@@ -18,13 +18,24 @@ export const searcInputhBox = css`
     justify-content: center;
     align-items: center;
     width: 100%;
+    
+    & h4 {
+        box-sizing: border-box;
+        margin-right: 30px;
+    }
 
     & input {
-        width: 80%;
+        box-sizing: border-box;
+        width: 50%;
         padding: 10px;
-        border: 1px solid #ccc; /* 테두리 추가 */
         border-radius: 4px; /* 모서리 둥글게 */
-        font-size: 16px; /* 텍스트 크기 */
+        font-size: 24px;
+        color: #dbdbdb;
+        background-color: #1b386a;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #dbdbdb;
+        cursor: default;
     }
     & button {
         border: none;
@@ -54,5 +65,6 @@ export const mainBox = css` // 데이터 조회 될 박스 - 여러개 나옴
 `;
 
 export const searchOptions = css`
+    display: flex;
 
 `;
