@@ -42,12 +42,12 @@ function Startpage(props) {
                     <div css={s.titleBox}>
                         <div>
                             {/* 이모티콘: window + . */}
-                            <h4>영어단어의 뜻을 맞춰보세요😊</h4>
+                            <h4>문제를 맞춰보세요😊</h4>
                         </div>
                     </div>
                     <div css={s.middleBox}>
                         <p>
-                            문제 : fire
+                            문제 : 
                         </p>
                     </div>
                     <div css={s.answerBox}>
@@ -58,7 +58,7 @@ function Startpage(props) {
                 </div>
                 :
                 <div css={s.mainBox} onClick={handleToggleOnClick}>
-                    <h1>정답화면 구현준</h1>
+                    <h5>문제의 답입니다😁</h5>
                 </div>
             }
         </div>
