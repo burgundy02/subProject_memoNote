@@ -13,6 +13,8 @@ public interface MemoMapper {
 
     int update(Memo todo);
 
+    Memo getRandomMemo();
+
     Memo getMemo(int memoId);
 
     List<Memo> getMemos();

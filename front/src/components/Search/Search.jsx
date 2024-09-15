@@ -87,22 +87,22 @@ function Search(props) {
             <header css={s.mainHeader}>
                 <h2>조회 페이지</h2>
                 <div css={s.searcInputhBox}>
+                    <h4>검색어 </h4>
                     <input
                         type="text"
-                        placeholder='검색어를 입력해 주세요'
                         name={searchType}
                         onChange={handleOnChange}
                         value={searchMemo[searchType]}  // 'all'일 때는 searchMemo.all, 아니면 해당 필드값
-                        />
-                    <button onClick={searchSubmitButtonOnClick}>
-                        <FaSearch />
-                    </button>
-
+                    />
                     <div css={s.searchOptions}>
-                        <SearchOptions
-                            searchType={searchType}
-                            setSearchType={setSearchType}
-                        />
+                        <button onClick={searchSubmitButtonOnClick}>
+                            <FaSearch />
+                        </button>
+
+                            <SearchOptions
+                                searchType={searchType}
+                                setSearchType={setSearchType}
+                            />
                     </div>
 
                 </div>

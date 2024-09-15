@@ -3,6 +3,7 @@ package com.project.memorization_note.service;
 import com.project.memorization_note.dto.request.ReqRegisterTodoDto;
 import com.project.memorization_note.dto.request.ReqUpdateMemoDto;
 import com.project.memorization_note.dto.response.RespGetMemoDto;
+import com.project.memorization_note.dto.response.RespGetRandomMemoDto;
 import com.project.memorization_note.entity.Memo;
 import com.project.memorization_note.repository.MemoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,16 @@ public class MemoService {
 
     public int updateMemo(ReqUpdateMemoDto dto) {
         return memoMapper.update(dto.toEntity());
+    }
+
+    public RespGetRandomMemoDto getRandomMemo() {
+        Memo memo = memoMapper.getRandomMemo();
+
+        return RespGetRandomMemoDto.builder()
+                .question(memo.getQuestion())
+                .answer(memo.getAnswer())
+                .explainMemo(memo.getExplainMemo())
+                .build();
     }
 
     public RespGetMemoDto getMemoById(int memoId) {
