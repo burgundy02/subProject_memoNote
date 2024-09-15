@@ -19,21 +19,12 @@ function Startpage(props) {
         }
     );
 
-    const memoMutaion = useMutation(
-        async () => {
-            return await instance.get("/memo")
-        },
-        {
-            
-        }
-    );
-
     const handleButtonOnClick = () => {
         navigate("/");
     }
 
     const handleRandomButtonOnClick = () => {
-
+        question.refetch();
     }
 
     const handleToggleOnClick = () => {
@@ -46,16 +37,36 @@ function Startpage(props) {
     }
 
     return (
-        <div css={s.layout}>
-            {/* <div css={s.logoBox}>
-                <div>
-                    <h3>LOGO</h3>
-                </div>
-            </div> */}
+        <>
             <div css={s.buttonBox}> 
                 <button onClick={handleButtonOnClick}>취소</button>
-                <button>다시 풀기</button>
+                <button onClick={handleRandomButtonOnClick}>다시 풀기</button>
             </div>
+            <div css={s.layout}>
+                {/* <div css={s.logoBox}>
+                    <div>
+                        <h3>LOGO</h3>
+                    </div>
+                </div> */}
+                {
+                    toggle === "question" ? 
+                    <div css={s.mainBox} onClick={handleToggleOnClick}>
+                        <div css={s.titleBox}>
+                            <div>
+                                {/* 이모티콘: window + . */}
+                                <h4>문제를 맞춰보세요😊</h4>
+                            </div>
+                        </div>
+                        <div css={s.middleBox1}>
+                            <p>
+                                문제 : 
+                            </p>
+                        </div>
+                        <div css={s.questionBox}>
+                            <div>
+                                <h5>답을 확인하려면 화면을 클릭하세요</h5>
+                            </div>
+                        </div>
             {
                 toggle === "question" ? 
                 <div css={s.mainBox} onClick={handleToggleOnClick}>
@@ -70,18 +81,25 @@ function Startpage(props) {
                             문제 : {question?.data?.data.question}
                         </p>
                     </div>
-                    <div css={s.answerBox}>
-                        <div>
-                            <h5>답을 확인하려면 화면을 클릭하세요</h5>
+                    :
+                    <div css={s.mainBox} onClick={handleToggleOnClick}>
+                        <div css={s.lineBox}>
+                            <h4>문제의 답입니다😁</h4>
+                        </div>
+                        <div css={s.middleBox2}>
+                            <p>문제:</p>
+                            <p>정답:</p>
+                            <p>예제:</p>
+                        </div>
+                        <div css={s.answerBox}>
+                            <div >
+                                <h5>문제를 보려면 화면을 클릭하세요</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-                :
-                <div css={s.mainBox} onClick={handleToggleOnClick}>
-                    <h1>정답화면 구현준</h1>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        </>
     );
 }
 
