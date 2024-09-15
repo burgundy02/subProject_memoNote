@@ -5,9 +5,10 @@ import * as s from './style';
 import SearchOptions from '../SearchOptions/SearchOptions';
 import { instance } from '../../apis/util/instance';
 import ScrollableResults from '../ScrollableResults/ScrollableResults';
-
+import ReactModal from 'react-modal';
 
 function Search(props) {
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const [searchMemo, setSearchMemo] = useState({
         question: "",
@@ -82,6 +83,14 @@ function Search(props) {
 
     };
 
+    const handleQuestionOnClick = () => {
+        setModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
+
     return (
         <div css={s.layout}>
             <header css={s.mainHeader}>
@@ -114,17 +123,77 @@ function Search(props) {
             </header>
             <div css={s.container}>
                 <div css={s.mainBox}>
-                    {
-                        errorMessage &&
-                        <h2>{errorMessage}</h2>
-                    }
-
-                    {
-                        data &&
-                        <ScrollableResults data={data} onEdit={handleEdit} onDelete={handleDelete} />
-                    }
+                    <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <div css={s.buttonBox}>
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
                 </div>
+                <div css={s.mainBox}>
+                    <p onClick={handleQuestionOnClick}>▫️문제문a</p>
+                    <div css={s.buttonBox}>
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                </div>
+                <div css={s.mainBox}>
+                    <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <div css={s.buttonBox}>
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                </div>
+                <div css={s.mainBox}>
+                    <p onClick={handleQuestionOnClick}>▫️문제aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <div css={s.buttonBox}>
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                </div>
+                <div css={s.mainBox}>
+                    <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <div css={s.buttonBox}>
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                </div>
+                {
+                    errorMessage &&
+                    <h2>{errorMessage}</h2>
+                }
+
+                {
+                    data &&
+                    <ScrollableResults data={data} onEdit={handleEdit} onDelete={handleDelete} />
+                }
             </div>
+            <ReactModal
+                isOpen={isModalOpen}
+                onRequestClose={closeModal}
+                style={{
+                    content: {
+                        boxSizing: 'border-box',
+                        transform: 'translate(-50%, -50%)',
+                        top: '50%',
+                        left: '50%',
+                        borderRadius: '30px',
+                        width: '700px',
+                        height: '700px',
+                        color: '#dbdbdb',
+                        backgroundColor: '#1b386a'
+                    }
+                }}
+            >
+                <div css={s.modalBox}>
+                    <p>문제</p>
+                    <p>정답</p>
+                    <div>예제</div>
+                    <div css={s.modalButtonBox}>
+                        <button onClick={closeModal}>닫기</button>
+                    </div>
+                </div>
+            </ReactModal>
+            
         </div>
     );
 }
