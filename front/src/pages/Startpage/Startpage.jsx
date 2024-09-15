@@ -59,27 +59,14 @@ function Startpage(props) {
                         </div>
                         <div css={s.middleBox1}>
                             <p>
-                                문제 : 
+                                문제 : {question?.data?.data.question}
                             </p>
                         </div>
                         <div css={s.questionBox}>
-                            <div>
-                                <h5>답을 확인하려면 화면을 클릭하세요</h5>
+                            <div >
+                                <h5>정답을 보려면 화면을 클릭하세요</h5>
                             </div>
                         </div>
-            {
-                toggle === "question" ? 
-                <div css={s.mainBox} onClick={handleToggleOnClick}>
-                    <div css={s.titleBox}>
-                        <div>
-                            {/* 이모티콘: window + . */}
-                            <h4>문제를 맞춰보세요😊</h4>
-                        </div>
-                    </div>
-                    <div css={s.middleBox}>
-                        <p>
-                            문제 : {question?.data?.data.question}
-                        </p>
                     </div>
                     :
                     <div css={s.mainBox} onClick={handleToggleOnClick}>
