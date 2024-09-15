@@ -56,10 +56,18 @@ export const searchButton = css`
         }
 `;
 
+export const box = css`
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-left: 110px;
+    width: 100%;
+    height: 100%;
+`;
+
 export const container = css` // 그냥 박스
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     height: 500px;
     overflow-y: auto;
@@ -131,6 +139,7 @@ export const modalBox = css`
     }
 
     & > div {
+        box-sizing: border-box;
         margin: 30px;
         font-size: 28px;
     }

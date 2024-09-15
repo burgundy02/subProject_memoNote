@@ -6,6 +6,7 @@ import BackgroundPage from './pages/BackgroundPage/BackgroundPage';
 import Startpage from './pages/Startpage/Startpage';
 import AddPage from './pages/AddPage/AddPage';
 import SearchMainPage from './pages/SearchMainPage/SearchMainPage';
+import SignPage from './pages/SignPage/SignPage';
 
 function App() {
   return (
