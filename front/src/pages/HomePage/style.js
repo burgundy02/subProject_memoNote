@@ -27,6 +27,7 @@ export const header = css`
     align-items: center;
 
     border: 2px solid #dbdbdb;
+    border-top: none;
     border-left: none;
     border-right: none;
 

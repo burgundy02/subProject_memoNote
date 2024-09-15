@@ -1,30 +1,17 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
-import { IoMdSearch, IoIosAddCircleOutline, IoIosContact, IoIosCog } from "react-icons/io";
-import * as s from './style';
 import CountUp from 'react-countup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import * as s from './style';
+import LogoHeader from '../../components/LogoHeader/LogoHeader';
 
 function HomePage(props) {
+    const navigate = useNavigate();
     return (
         <>
             <div css={s.layout}>
                 <div css={s.container}>
-                    <div css={s.header}>
-                        <div>
-                            <div>
-                                <h3><span>LOGO</span></h3>
-                            </div>
-
-                            <div>
-                                <ul>
-                                    <li><IoIosContact /></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-
+                    <LogoHeader />
                     <div css={s.body}>
                         <div css={s.moveViewContainer}>
                             <div css={s.viewText}>
