@@ -119,53 +119,55 @@ function Search(props) {
                     {/* <button onClick={searchSubmitButtonOnClick}>통합검색</button>
                     <button onClick={() => searchSubmitButtonOnClick("question")}>문제 이름으로 조회</button>
                     <button onClick={() => searchSubmitButtonOnClick("answer")}>정답 이름으로 조회</button> */}
-                </div>
+                </div>  
             </header>
-            <div css={s.container}>
-                <div css={s.mainBox}>
-                    <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                    <div css={s.buttonBox}>
-                        <button>수정</button>
-                        <button>삭제</button>
+            <div css={s.box}>
+                <div css={s.container}>
+                    <div css={s.mainBox}>
+                        <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                        <div css={s.buttonBox}>
+                            <button>수정</button>
+                            <button>삭제</button>
+                        </div>
                     </div>
-                </div>
-                <div css={s.mainBox}>
-                    <p onClick={handleQuestionOnClick}>▫️문제문a</p>
-                    <div css={s.buttonBox}>
-                        <button>수정</button>
-                        <button>삭제</button>
+                    <div css={s.mainBox}>
+                        <p onClick={handleQuestionOnClick}>▫️문제문a</p>
+                        <div css={s.buttonBox}>
+                            <button>수정</button>
+                            <button>삭제</button>
+                        </div>
                     </div>
-                </div>
-                <div css={s.mainBox}>
-                    <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                    <div css={s.buttonBox}>
-                        <button>수정</button>
-                        <button>삭제</button>
+                    <div css={s.mainBox}>
+                        <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                        <div css={s.buttonBox}>
+                            <button>수정</button>
+                            <button>삭제</button>
+                        </div>
                     </div>
-                </div>
-                <div css={s.mainBox}>
-                    <p onClick={handleQuestionOnClick}>▫️문제aaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                    <div css={s.buttonBox}>
-                        <button>수정</button>
-                        <button>삭제</button>
+                    <div css={s.mainBox}>
+                        <p onClick={handleQuestionOnClick}>▫️문제aaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                        <div css={s.buttonBox}>
+                            <button>수정</button>
+                            <button>삭제</button>
+                        </div>
                     </div>
-                </div>
-                <div css={s.mainBox}>
-                    <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                    <div css={s.buttonBox}>
-                        <button>수정</button>
-                        <button>삭제</button>
+                    <div css={s.mainBox}>
+                        <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                        <div css={s.buttonBox}>
+                            <button>수정</button>
+                            <button>삭제</button>
+                        </div>
                     </div>
-                </div>
-                {
-                    errorMessage &&
-                    <h2>{errorMessage}</h2>
-                }
+                    {
+                        errorMessage &&
+                        <h2>{errorMessage}</h2>
+                    }
 
-                {
-                    data &&
-                    <ScrollableResults data={data} onEdit={handleEdit} onDelete={handleDelete} />
-                }
+                    {
+                        data &&
+                        <ScrollableResults data={data} onEdit={handleEdit} onDelete={handleDelete} />
+                    }
+                </div>
             </div>
             <ReactModal
                 isOpen={isModalOpen}
