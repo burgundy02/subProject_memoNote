@@ -17,6 +17,7 @@ export const container = css`
     height: 100%;
     padding: 15px;
 `;
+
 // 헤더
 export const header = css`
     width: 100%;

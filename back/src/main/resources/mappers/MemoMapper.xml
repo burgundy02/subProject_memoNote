@@ -60,4 +60,16 @@
         from
             memo_tb
     </select>
+
+<!--    랜덤 1개 조회-->
+    <select id="getRandomMemo" resultType="com.project.memorization_note.entity.Memo">
+        select
+            question,
+            answer,
+            explainMemo
+        from
+            memo_tb
+        order by
+            rand() limit 1
+    </select>
 </mapper>
