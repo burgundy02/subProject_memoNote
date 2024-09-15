@@ -19,21 +19,12 @@ function Startpage(props) {
         }
     );
 
-    const memoMutaion = useMutation(
-        async () => {
-            return await instance.get("/memo")
-        },
-        {
-            
-        }
-    );
-
     const handleButtonOnClick = () => {
         navigate("/");
     }
 
     const handleRandomButtonOnClick = () => {
-
+        question.refetch();
     }
 
     const handleToggleOnClick = () => {
@@ -54,7 +45,7 @@ function Startpage(props) {
             </div> */}
             <div css={s.buttonBox}> 
                 <button onClick={handleButtonOnClick}>취소</button>
-                <button>다시 풀기</button>
+                <button onClick={handleRandomButtonOnClick}>다시 풀기</button>
             </div>
             {
                 toggle === "question" ? 
