@@ -24,6 +24,7 @@ function Startpage(props) {
     }
 
     const handleRandomButtonOnClick = () => {
+        setToggle("question");
         question.refetch();
     }
 
@@ -74,9 +75,9 @@ function Startpage(props) {
                             <h4>문제의 답입니다😁</h4>
                         </div>
                         <div css={s.middleBox2}>
-                            <p>문제:</p>
-                            <p>정답:</p>
-                            <p>예제:</p>
+                            <p>문제: {question?.data?.data.question}</p>
+                            <p>정답: {question?.data?.data.answer}</p>
+                            <p>예제: {question?.data?.data.explainMemo}</p>
                         </div>
                         <div css={s.answerBox}>
                             <div >

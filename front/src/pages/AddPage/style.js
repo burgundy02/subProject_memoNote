@@ -31,6 +31,7 @@ export const titleBox = css`
     display: flex;
     justify-content: center;
     box-sizing: border-box;
+    padding-bottom: 15px;
     border-bottom: 2px solid #dbdbdb;
     width: 90%;
 `;
@@ -73,7 +74,6 @@ export const inputBox1 = css`
             font-size: 24px;
             color: #dbdbdb;
             background-color: #1b386a;
-            cursor: pointer;
         }
     }
 `;
@@ -109,7 +109,6 @@ export const inputBox2 = css`
             color: #dbdbdb;
             resize: none;
             background-color: #1b386a;
-            cursor: pointer;
             overflow-y: auto;
     
             &::-webkit-scrollbar {

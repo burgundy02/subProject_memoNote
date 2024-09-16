@@ -6,6 +6,7 @@ import SearchOptions from '../SearchOptions/SearchOptions';
 import { instance } from '../../apis/util/instance';
 import ScrollableResults from '../ScrollableResults/ScrollableResults';
 import ReactModal from 'react-modal';
+import { useQuery } from 'react-query';
 
 function Search(props) {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -22,9 +23,20 @@ function Search(props) {
 
     const [searchType, setSearchType] = useState('all');  // 검색 유형
 
+    const [memoId, setMemoId] = useState(0);
+
     // useEffect(() => {
     //     // isSearchOpen 또는 다른 상태 변경 시 실행할 코드
     // }, [isSearchOpen]);
+
+    const getAllQuestion = useQuery(
+        ["getAllQuestionQuery"],
+        async () => await instance.get("/memos"),
+        {
+            retry: 0,
+        }
+    );
+    console.log(getAllQuestion?.data?.data);  
 
     const handleOnChange = (e) => { // 검색어 입력
         const { name, value } = e.target;
@@ -85,7 +97,8 @@ function Search(props) {
 
     };
 
-    const handleQuestionOnClick = () => {
+    const handleQuestionOnClick = (memoId) => {
+        setMemoId(memoId);
         setModalOpen(true);
     }
 
@@ -134,13 +147,55 @@ function Search(props) {
             </header>
             <div css={s.box}>
                 <div css={s.container}>
-                    <div css={s.mainBox}>
-                        <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                        <div css={s.buttonBox}>
-                            <button onClick={handleUpdateOnClick}>수정</button>
-                            <button>삭제</button>
-                        </div>
-                    </div>
+                    {
+                        !errorMessage &&
+                        getAllQuestion?.data?.data.map(question => 
+                            <div>
+                                <div id={question.memoId} css={s.mainBox}>
+                                    <p onClick={() => handleQuestionOnClick(question.memoId)}>▫️{question.question}</p>
+                                    <div css={s.buttonBox}>
+                                        <button>수정</button>
+                                        <button>삭제</button>
+                                    </div>
+                                </div>
+                                {
+                                    memoId === question.memoId &&
+                                    <ReactModal
+                                        isOpen={isModalOpen}
+                                        onRequestClose={closeModal}
+                                        style={{
+                                            content: {
+                                                boxSizing: 'border-box',
+                                                transform: 'translate(-50%, -50%)',
+                                                top: '50%',
+                                                left: '50%',
+                                                borderRadius: '30px',
+                                                width: '700px',
+                                                height: '700px',
+                                                color: '#dbdbdb',
+                                                backgroundColor: '#1b386a'
+                                            }
+                                        }}
+                                    >
+                                        <div css={s.modalBox}>
+                                            <div css={s.dateBox}>
+                                                <span>등록일: {new Date(question.registerDate).toLocaleString()}</span>
+                                                <span>마지막 수정일: {new Date(question.updateDate).toLocaleString()}</span>
+                                            </div>
+                                            <div css={s.dataBox}>
+                                                <p>문제: {question.question}</p>
+                                                <p>정답: {question.answer}</p>
+                                                <div>예제: {question.explainMemo}</div>
+                                            </div>
+                                            <div css={s.modalButtonBox}>
+                                                <button onClick={closeModal}>닫기</button>
+                                            </div>
+                                        </div>
+                                    </ReactModal>
+                                }
+                            </div>
+                        )
+                    }
                     {
                         errorMessage &&
                         <h2>{errorMessage}</h2>
@@ -204,7 +259,6 @@ function Search(props) {
                     <span>예제:</span>
                 </div>
             </ReactModal>
-
         </div>
     );
 }
