@@ -145,6 +145,22 @@ export const modalBox = css`
     }
 `;
 
+// 수정 모달창 디자인
+export const updateModalBox = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    & > div {
+        
+        box-sizing: border-box;
+        border-bottom: 1px solid #dbdbdb;
+        width: 80%;
+
+    }
+`;
+
 export const modalButtonBox = css`
     display: flex;
     justify-content: center;

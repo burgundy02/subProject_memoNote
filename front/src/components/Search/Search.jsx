@@ -9,6 +9,8 @@ import ReactModal from 'react-modal';
 
 function Search(props) {
     const [isModalOpen, setModalOpen] = useState(false);
+    // 수정 버튼 눌렀을 때 모달 오픈
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
     const [searchMemo, setSearchMemo] = useState({
         question: "",
@@ -36,7 +38,7 @@ function Search(props) {
             // 'question' 또는 'answer'일 때 해당 필드만 업데이트
             setSearchMemo(memo => ({
                 ...memo,
-                [searchType]: value
+                searchType: value
             }));
         }
         console.log(value)
@@ -53,7 +55,7 @@ function Search(props) {
                 };
             } else {
                 // 특정 검색 유형일 때
-                query = searchMemo[searchType];
+                query = searchMemo.searchType;
             }
 
             const response = await instance.get("/memo/search", {
@@ -87,8 +89,17 @@ function Search(props) {
         setModalOpen(true);
     }
 
+   // 수정 버튼 눌렀을 때 모달창 false에서 true로 띄우기
+    const handleUpdateOnClick = () => {
+        setIsUpdateModalOpen(true);
+    }
+
     const closeModal = () => {
         setModalOpen(false);
+    }
+    // 수정 모달창 닫기
+    const closeUpdateModal = () => {
+        setIsUpdateModalOpen(false);
     }
 
     return (
@@ -101,7 +112,7 @@ function Search(props) {
                         type="text"
                         name={searchType}
                         onChange={handleOnChange}
-                        value={searchMemo[searchType]}  // 'all'일 때는 searchMemo.all, 아니면 해당 필드값
+                        value={searchMemo.searchType}  // 'all'일 때는 searchMemo.all, 아니면 해당 필드값
                     />
                     <div css={s.searchOptions}>
                         <button onClick={searchSubmitButtonOnClick}>
@@ -126,35 +137,7 @@ function Search(props) {
                     <div css={s.mainBox}>
                         <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
                         <div css={s.buttonBox}>
-                            <button>수정</button>
-                            <button>삭제</button>
-                        </div>
-                    </div>
-                    <div css={s.mainBox}>
-                        <p onClick={handleQuestionOnClick}>▫️문제문a</p>
-                        <div css={s.buttonBox}>
-                            <button>수정</button>
-                            <button>삭제</button>
-                        </div>
-                    </div>
-                    <div css={s.mainBox}>
-                        <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                        <div css={s.buttonBox}>
-                            <button>수정</button>
-                            <button>삭제</button>
-                        </div>
-                    </div>
-                    <div css={s.mainBox}>
-                        <p onClick={handleQuestionOnClick}>▫️문제aaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                        <div css={s.buttonBox}>
-                            <button>수정</button>
-                            <button>삭제</button>
-                        </div>
-                    </div>
-                    <div css={s.mainBox}>
-                        <p onClick={handleQuestionOnClick}>▫️문제문제문제aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                        <div css={s.buttonBox}>
-                            <button>수정</button>
+                            <button onClick={handleUpdateOnClick}>수정</button>
                             <button>삭제</button>
                         </div>
                     </div>
@@ -173,7 +156,7 @@ function Search(props) {
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
                 style={{
-                    content: {
+                    content: {  
                         boxSizing: 'border-box',
                         transform: 'translate(-50%, -50%)',
                         top: '50%',
@@ -195,7 +178,33 @@ function Search(props) {
                     </div>
                 </div>
             </ReactModal>
-            
+            <ReactModal 
+                isOpen={isUpdateModalOpen}
+                onRequestClose={closeUpdateModal}
+                style={{
+                    content: {
+                        boxSizing: 'border-box',
+                        transform: 'translate(-50%, -50%)',
+                        top: '50%',
+                        left: '50%',
+                        borderRadius: '30px',
+                        width: '700px',
+                        height: '700px',
+                        color: '#dbdbdb',
+                        backgroundColor: '#1b386a'
+                    }
+                }}
+            >
+                <div css={s.updateModalBox}>
+                    <div>
+                        <h4>문제 수정하기</h4>
+                    </div>
+                    <span>문제:</span>
+                    <span>정답:</span>
+                    <span>예제:</span>
+                </div>
+            </ReactModal>
+
         </div>
     );
 }
