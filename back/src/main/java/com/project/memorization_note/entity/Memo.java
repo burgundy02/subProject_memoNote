@@ -20,6 +20,8 @@ public class Memo {
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
 
+    private String all;
+
     public RespGetMemoDto toDto() {
         return RespGetMemoDto.builder()
                 .memoId(memoId)

@@ -1,6 +1,7 @@
 package com.project.memorization_note.service;
 
 import com.project.memorization_note.dto.request.ReqRegisterTodoDto;
+import com.project.memorization_note.dto.request.ReqSearchMemoDto;
 import com.project.memorization_note.dto.request.ReqUpdateMemoDto;
 import com.project.memorization_note.dto.response.RespGetMemoDto;
 import com.project.memorization_note.dto.response.RespGetRandomMemoDto;
@@ -63,4 +64,39 @@ public class MemoService {
         return dtos;
     }
 
+    public List<RespGetMemoDto> getSearchMemos(ReqSearchMemoDto dto) {
+        if(dto.getAll() == null || dto.getAll().equals("")) {
+            if(dto.getQuestion() == null || dto.getQuestion().equals("")) {
+                List<Memo> memos = memoMapper.getSearchMemosByAnswer(dto.toEntity());
+                return toDto(memos);
+            } else {
+                List<Memo> memos = memoMapper.getSearchMemosByQuestion(dto.toEntity());
+                return toDto(memos);
+            }
+        } else {
+            List<Memo> memos = memoMapper.getSearchMemos(dto.toEntity());
+            return toDto(memos);
+        }
+    }
+
+    private List<RespGetMemoDto> toDto(List<Memo> memos) {
+        List<RespGetMemoDto> dtos = new ArrayList<>();
+
+        for(Memo memo : memos) {
+            RespGetMemoDto memoDto = RespGetMemoDto.builder()
+                    .memoId(memo.getMemoId())
+                    .question(memo.getQuestion())
+                    .answer(memo.getAnswer())
+                    .explainMemo(memo.getExplainMemo())
+                    .registerDate(memo.getRegisterDate())
+                    .updateDate(memo.getUpdateDate())
+                    .build();
+            dtos.add(memoDto);
+        }
+
+        return dtos;
+    }
+
+
 }
+

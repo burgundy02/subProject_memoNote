@@ -19,5 +19,9 @@ public interface MemoMapper {
 
     List<Memo> getMemos();
 
+    List<Memo> getSearchMemos(Memo memo);
 
+    List<Memo> getSearchMemosByQuestion(Memo memo);
+
+    List<Memo> getSearchMemosByAnswer(Memo memo);
 }
