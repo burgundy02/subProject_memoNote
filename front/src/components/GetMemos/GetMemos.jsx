@@ -15,6 +15,11 @@ function GetMemos({data}) {
         setModalOpen(true);
     }
 
+    // 모달에서 수정 완료 버튼
+    const updateOkButton = () => {
+
+    }
+
     // 수정 버튼 눌렀을 때 모달창 false에서 true로 띄우기
     const handleUpdateOnClick = () => {
         setIsUpdateModalOpen(true);
@@ -118,11 +123,24 @@ function GetMemos({data}) {
             >
                 <div css={s.updateModalBox}>
                     <div>
-                        <h4>문제 수정하기</h4>
+                        <p>문제 수정하기</p>
                     </div>
-                    <span>문제:</span>
-                    <span>정답:</span>
-                    <span>예제:</span>
+                    <div css={s.updateModalAnswerBox}>
+
+                        <div css={s.coalescence}>
+                            <span>문제:</span><input type="text" />
+                        </div>
+                        <div css={s.coalescence}>
+                            <span>정답:</span><input type="text" />
+                        </div>
+                        <div css={s.coalescence}>
+                            <span>예제:</span><input type="text" />
+                        </div>
+                    </div>
+                    <div css={s.updateButtonBox}>
+                        <button onClick={updateOkButton}>확인</button>
+                        <button onClick={closeUpdateModal}>취소</button>
+                    </div>
                 </div>
             </ReactModal>
         </div>
