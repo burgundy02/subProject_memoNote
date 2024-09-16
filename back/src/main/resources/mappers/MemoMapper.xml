@@ -72,4 +72,50 @@
         order by
             rand() limit 1
     </select>
+
+<!--    전체 검색-->
+    <select id="getSearchMemos" resultType="com.project.memorization_note.entity.Memo">
+        select
+            memoId,
+            question,
+            answer,
+            explainMemo,
+            registerDate,
+            updateDate
+        from
+            memo_tb
+        where
+            question like concat("%", #{all}, "%")
+            or answer like concat("%", #{all}, "%")
+    </select>
+
+<!--    문제로 검색-->
+    <select id="getSearchMemosByQuestion" resultType="com.project.memorization_note.entity.Memo">
+        select
+            memoId,
+            question,
+            answer,
+            explainMemo,
+            registerDate,
+            updateDate
+        from
+            memo_tb
+        where
+            question like concat("%", #{question}, "%")
+    </select>
+
+<!--    정답으로 검색-->
+    <select id="getSearchMemosByAnswer" resultType="com.project.memorization_note.entity.Memo">
+        select
+            memoId,
+            question,
+            answer,
+            explainMemo,
+            registerDate,
+            updateDate
+        from
+            memo_tb
+        where
+            answer like concat("%", #{answer}, "%")
+    </select>
 </mapper>

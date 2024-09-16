@@ -2,6 +2,7 @@ package com.project.memorization_note.controller;
 
 import com.project.memorization_note.aspect.annotation.Log;
 import com.project.memorization_note.dto.request.ReqRegisterTodoDto;
+import com.project.memorization_note.dto.request.ReqSearchMemoDto;
 import com.project.memorization_note.dto.request.ReqUpdateMemoDto;
 import com.project.memorization_note.service.MemoService;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,11 @@ public class MemoController {
     @GetMapping("/memos")
     public ResponseEntity<?> getMemos() {
         return ResponseEntity.ok().body(memoService.getMemos());
+    }
+
+    @GetMapping("/memo/search")
+    public ResponseEntity<?> searchMemos(ReqSearchMemoDto dto) {
+        return ResponseEntity.ok().body(memoService.getSearchMemos(dto));
     }
 
     //추가 및 삭제
