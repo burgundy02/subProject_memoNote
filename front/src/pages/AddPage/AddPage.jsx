@@ -24,9 +24,39 @@ function AddPage(props) {
             [e.target.name]: e.target.value
         }))
     }
+
+
     const handleSubmitClick = async () => {
+        const errorFieldMessage = {
+            quest: "문제를 입력해주세요",
+            answer: "정답 입력해주세요",
+            explainMemo: "설명을 입력해주세요",
+        }
+
+        for (let [key, value] of Object.entries(errorFieldMessage)) {
+            if (questionInput[key].trim() === "") {
+                alert(value);
+                return;
+            }
+        }
+        if (!window.confirm("추가하시겠습니까?")) {
+            return;
+        }
+
         const addData = await addQuestionApi(questionInput);
-        console.log(addData);
+        if (!addData.data) {
+            alert("문제 추가에 실패 하였습니다 다시 시도하세요.")
+            return;
+        }
+        if (window.confirm("추가성공! 확인하시겠습니까?")) {
+            navigate("/memo/search")
+        }
+        setQuestionInput({
+            writer: "default",
+            quest: "",
+            answer: "",
+            explainMemo: "",
+        })
     }
     return (
         <div css={s.layout}>

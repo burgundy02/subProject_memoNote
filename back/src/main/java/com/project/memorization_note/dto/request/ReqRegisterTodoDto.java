@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 public class ReqRegisterTodoDto {
-    private String question;
+    private String quest;
     private String answer;
     private String explainMemo;
 
     public Memo toEntity() {
         return Memo.builder()
-                .question(question)
+                .question(quest)
                 .answer(answer)
                 .explainMemo(explainMemo)
                 .build();
