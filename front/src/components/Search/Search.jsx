@@ -97,13 +97,18 @@ function Search(props) {
 
     };
 
+    // 모달에서 수정 완료 버튼
+    const updateOkButton = () => {
+
+    }
+
     const handleQuestionOnClick = (memoId) => {
         setMemoId(memoId);
         setModalOpen(true);
     }
 
    // 수정 버튼 눌렀을 때 모달창 false에서 true로 띄우기
-    const handleUpdateOnClick = () => {
+    const handleUpdateOpenOnClick = () => {
         setIsUpdateModalOpen(true);
     }
 
@@ -154,7 +159,7 @@ function Search(props) {
                                 <div id={question.memoId} css={s.mainBox}>
                                     <p onClick={() => handleQuestionOnClick(question.memoId)}>▫️{question.question}</p>
                                     <div css={s.buttonBox}>
-                                        <button onClick={handleUpdateOnClick}>수정</button>
+                                        <button onClick={handleUpdateOpenOnClick}>수정</button>
                                         <button>삭제</button>
                                     </div>
                                 </div>
@@ -207,32 +212,6 @@ function Search(props) {
                     }
                 </div>
             </div>
-            <ReactModal
-                isOpen={isModalOpen}
-                onRequestClose={closeModal}
-                style={{
-                    content: {  
-                        boxSizing: 'border-box',
-                        transform: 'translate(-50%, -50%)',
-                        top: '50%',
-                        left: '50%',
-                        borderRadius: '30px',
-                        width: '700px',
-                        height: '700px',
-                        color: '#dbdbdb',
-                        backgroundColor: '#1b386a'
-                    }
-                }}
-            >
-                <div css={s.modalBox}>
-                    <p>문제</p>
-                    <p>정답</p>
-                    <div>예제</div>
-                    <div css={s.modalButtonBox}>
-                        <button onClick={closeModal}>닫기</button>
-                    </div>
-                </div>
-            </ReactModal>
             <ReactModal 
                 isOpen={isUpdateModalOpen}
                 onRequestClose={closeUpdateModal}
@@ -252,11 +231,24 @@ function Search(props) {
             >
                 <div css={s.updateModalBox}>
                     <div>
-                        <h4>문제 수정하기</h4>
+                        <p>문제 수정하기</p>
                     </div>
-                    <span>문제:</span>
-                    <span>정답:</span>
-                    <span>예제:</span>
+                    <div css={s.updateModalAnswerBox}>
+
+                        <div css={s.coalescence}>
+                            <span>문제:</span><input type="text" />
+                        </div>
+                        <div css={s.coalescence}>
+                            <span>정답:</span><input type="text" />
+                        </div>
+                        <div css={s.coalescence}>
+                            <span>예제:</span><input type="text" />
+                        </div>
+                    </div>
+                    <div css={s.updateButtonBox}>
+                        <button onClick={updateOkButton}>확인</button>
+                        <button onClick={closeUpdateModal}>취소</button>
+                    </div>
                 </div>
             </ReactModal>
         </div>
