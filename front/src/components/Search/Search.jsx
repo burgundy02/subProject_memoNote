@@ -107,13 +107,18 @@ function Search(props) {
 
     };
 
+    // 모달에서 수정 완료 버튼
+    const updateOkButton = () => {
+
+    }
+
     const handleQuestionOnClick = (memoId) => {
         setMemoId(memoId);
         setModalOpen(true);
     }
 
    // 수정 버튼 눌렀을 때 모달창 false에서 true로 띄우기
-    const handleUpdateOnClick = () => {
+    const handleUpdateOpenOnClick = () => {
         setIsUpdateModalOpen(true);
     }
 
