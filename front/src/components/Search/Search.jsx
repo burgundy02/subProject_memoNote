@@ -154,7 +154,7 @@ function Search(props) {
                                 <div id={question.memoId} css={s.mainBox}>
                                     <p onClick={() => handleQuestionOnClick(question.memoId)}>▫️{question.question}</p>
                                     <div css={s.buttonBox}>
-                                        <button>수정</button>
+                                        <button onClick={handleUpdateOnClick}>수정</button>
                                         <button>삭제</button>
                                     </div>
                                 </div>
