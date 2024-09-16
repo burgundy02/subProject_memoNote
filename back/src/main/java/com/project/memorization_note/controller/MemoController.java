@@ -1,5 +1,6 @@
 package com.project.memorization_note.controller;
 
+import com.project.memorization_note.aspect.annotation.Log;
 import com.project.memorization_note.dto.request.ReqRegisterTodoDto;
 import com.project.memorization_note.dto.request.ReqSearchMemoDto;
 import com.project.memorization_note.dto.request.ReqUpdateMemoDto;
@@ -17,10 +18,10 @@ public class MemoController {
     @Autowired
     private MemoService memoService;
 
+
     @PostMapping("/todo")
     public ResponseEntity<?> add(@RequestBody ReqRegisterTodoDto dto) {
-        System.out.println(dto);
-        int successCount = memoService.registerTodo(dto);
+        int successCount = memoService.addQuest(dto);
         return ResponseEntity.created(null).body(successCount);
     }
 
@@ -51,11 +52,11 @@ public class MemoController {
     }
 
     //추가 및 삭제
-
+    @Log
     @PostMapping("/memo")
     public ResponseEntity<?> addQuest(@RequestBody ReqRegisterTodoDto dto) {
-        System.out.println(dto);
-        return ResponseEntity.ok().body("성공");
+        memoService.addQuest(dto);
+        return ResponseEntity.ok().body(true);
     }
 
     @DeleteMapping("/{memoId}")

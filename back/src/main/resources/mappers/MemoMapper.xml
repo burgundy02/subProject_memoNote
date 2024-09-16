@@ -9,7 +9,7 @@
     <insert id="save">
         insert into memo_tb
         values
-            (0, #{question}, #{answer}, #{explainMemo}, now(), now())
+            (0, #{question}, #{answer}, default, #{explainMemo}, now(), now())
     </insert>
 
 <!--    수정-->

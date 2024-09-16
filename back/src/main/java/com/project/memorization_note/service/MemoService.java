@@ -19,7 +19,8 @@ public class MemoService {
     @Autowired
     private MemoMapper memoMapper;
 
-    public int registerTodo(ReqRegisterTodoDto dto) {
+    // 추가
+    public int addQuest(ReqRegisterTodoDto dto) {
         return memoMapper.save(dto.toEntity());
     }
 
