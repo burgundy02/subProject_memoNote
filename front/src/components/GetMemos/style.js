@@ -101,6 +101,7 @@ export const updateModalBox = css`
     align-items: center;
     margin: 20px;
     
+    
     & > div {
         display: flex;
         justify-content: center;
@@ -118,28 +119,64 @@ export const updateModalBox = css`
     // 수정 모달창 디자인
 export const updateModalAnswerBox = css`
     display: flex;
-    margin: 80px;
+    margin: 75px;
     flex-direction: column;
     justify-content: space-between;
-
 `;
+
+
  // 수정 모달창 스판,인풋 디자인
 export const coalescence = css`
     display: flex;
     // 스판 글자 세로로 나와서 스판,인풋 감싸고 있던 디비전의 길이를 늘림
-    margin: 30px;
+    margin: 24px;
     width: 100%;
 
-    & > input { 
+    & > textarea { 
         box-sizing: border-box;
         outline: none;
         border: none;
         border-bottom: 1px solid #dbdbdb77;
         // 인풋이 너무 길면 스판글자가 세로로 나옴 그래서 80%로 함
         width: 80%;
+        height: 50px;
         color: #dbdbdb;
         font-size: 28px;
         background-color: #1b386a;
+        resize: none;
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    & > span {
+        // 스판오른쪽에 마진주면 인풋이랑 붙어있는 거리가 떨어짐
+        margin-right: 7px;
+        font-size: 28px;
+    }
+`;
+
+export const coalescence3 = css`
+     display: flex;
+    // 스판 글자 세로로 나와서 스판,인풋 감싸고 있던 디비전의 길이를 늘림
+    margin: 24px;
+    width: 100%;
+
+    & > textarea { 
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #dbdbdb77;
+        // 인풋이 너무 길면 스판글자가 세로로 나옴 그래서 80%로 함
+        width: 80%;
+        height: 100px;
+        color: #dbdbdb;
+        font-size: 28px;
+        background-color: #1b386a;
+        resize: none;
+        ::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     & > span {

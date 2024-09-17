@@ -92,7 +92,9 @@ export const middleBox1 = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 20%;
+    // 문제 글씨가 가운데로 온다.
+    align-items: center;
+
    
 
     // 남는 공간을 먹음(1은 비율 (몇 대 몇 대 몇): 1만큼 먹는다 )
