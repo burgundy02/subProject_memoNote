@@ -12,7 +12,7 @@ function SearchMainPage(props) {
     return (
         <div css={s.layout}>
             <div css={s.buttonBox}>
-                <button onClick={handleButtonOnClick}>취소</button>
+                <button onClick={handleButtonOnClick}>뒤로</button>
             </div>
             <Search>
 

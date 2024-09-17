@@ -14,7 +14,9 @@ function LogoHeader(props) {
             <div css={s.header}>
                 <div>
                     <div css={s.logo}>
-                        <h3><span onClick={() => navigate("/")}>LOGO</span></h3>
+                        <h3><span onClick={() => navigate("/")}>
+                            <span>me</span><span>mo</span>
+                        </span></h3>
                     </div>
                     {
                         location.pathname === '/auth/sign'
