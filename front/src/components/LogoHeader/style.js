@@ -10,7 +10,7 @@ export const layout = css`
 
 export const header = css`
     width: 100%;
-    height: 50px;
+    height: 70px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -45,6 +45,17 @@ export const header = css`
 `;
 export const logo = css`
     position: relative;
+
+    & > h3 > span {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        
+        & > span {
+            margin: 0;
+            font-size: 25px;
+        }
+    }
 `;
 
 export const logoItems = css`

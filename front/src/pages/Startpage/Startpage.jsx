@@ -40,7 +40,7 @@ function Startpage(props) {
     return (
         <>
             <div css={s.buttonBox}> 
-                <button onClick={handleButtonOnClick}>취소</button>
+                <button onClick={handleButtonOnClick}>뒤로</button>
                 <button onClick={handleRandomButtonOnClick}>다시 풀기</button>
             </div>
             <div css={s.layout}>

@@ -30,7 +30,7 @@ function AddPage(props) {
         const errorFieldMessage = {
             quest: "문제를 입력해주세요",
             answer: "정답 입력해주세요",
-            explainMemo: "설명을 입력해주세요",
+            // explainMemo: "설명을 입력해주세요",
         }
 
         for (let [key, value] of Object.entries(errorFieldMessage)) {
@@ -82,7 +82,7 @@ function AddPage(props) {
                 <div css={s.inputBox2}>
                     <span>예제</span>
                     <div>
-                        <textarea name='explainMemo' onChange={handleInputOnChnage} value={questionInput.explainMemo} />
+                        <textarea name='explainMemo' onChange={handleInputOnChnage} value={questionInput.explainMemo} />    
                     </div>
                 </div>
             </div>

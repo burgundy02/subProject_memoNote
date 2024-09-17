@@ -48,12 +48,12 @@ function HomePage(props) {
                     </div>
                     <div css={s.footer}>
                         <ul>
-                            <li>공간</li>
-                            <li>공간</li>
-                            <li>공간</li>
-                            <li>공간</li>
+                            <li>김지현</li>
+                            <li>김해민</li>
+                            <li>김결휘</li>
+                            <li>이성민</li>
                         </ul>
-                        <div>footer</div>
+                        <div>김김김이</div>
                     </div>
                 </div>
             </div>
