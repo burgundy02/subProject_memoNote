@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import * as s from "./style";
 import ReactModal from 'react-modal';
 import { deleteQuestionApi } from '../../apis/memoApi/memoApi';
+import { instance } from '../../apis/util/instance';
 
 function GetMemos({ data }) {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -10,14 +11,32 @@ function GetMemos({ data }) {
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
     const [memoId, setMemoId] = useState(0);
+    const [updateMemo, setUpdateMemo] = useState({
+        memoId: data.memoId,
+        question: data.question,
+        answer: data.answer,
+        explainMemo: data.explainMemo
+    });
 
     const handleQuestionOnClick = (memoId) => {
         setMemoId(memoId);
         setModalOpen(true);
     }
 
+    // 모달에서 수정 완료 버튼
+    const updateOkButton = async () => {
+        try {
+            await instance.put("/memo", updateMemo);
+            alert("수정이 완료 됐습니다");
+            closeUpdateModal();
+        } catch {
+            alert("수정 중 오류가 발생했습니다.");
+        }
+    }
+
     // 수정 버튼 눌렀을 때 모달창 false에서 true로 띄우기
-    const handleUpdateOnClick = () => {
+    const handleUpdateOnClick = (memoId) => {
+        setMemoId(memoId);
         setIsUpdateModalOpen(true);
     }
     const handleDeleteOnClick = async () => {
@@ -32,6 +51,13 @@ function GetMemos({ data }) {
         alert("삭제 되었습니다!");
     }
 
+    const handleUpdateInputOnChange = (e) => {
+        setUpdateMemo(memo => ({
+            ...memo,
+            [e.target.name]: e.target.value,
+        }));
+    }
+
     const closeModal = () => {
         setModalOpen(false);
     }
@@ -43,100 +69,91 @@ function GetMemos({ data }) {
     return (
         <div>
             <div id={data.memoId} css={s.mainBox}>
-                <p onClick={() => handleQuestionOnClick(data.memoId)}>{data.question}</p>
+                <p onClick={() => handleQuestionOnClick(data.memoId)}>▫️{data.question}</p>
                 <div css={s.buttonBox}>
-                    <button onClick={handleUpdateOnClick}>수정</button>
-                    <button onClick={handleDeleteOnClick}>삭제</button>
+                    <button onClick={() => handleUpdateOnClick(data.memoId)}>수정</button>
+                    <button onClick={() => handleDeleteOnClick(data.memoId)}>삭제</button>
                 </div>
+
             </div>
             {
+                // true && 값 => 값을 보여줌, 반대면 안보여줌
                 memoId === data.memoId &&
-                <ReactModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    style={{
-                        content: {
-                            boxSizing: 'border-box',
-                            transform: 'translate(-50%, -50%)',
-                            top: '50%',
-                            left: '50%',
-                            borderRadius: '30px',
-                            width: '700px',
-                            height: '700px',
-                            color: '#dbdbdb',
-                            backgroundColor: '#1b386a'
-                        }
-                    }}
-                >
-                    <div css={s.modalBox}>
-                        <div css={s.dateBox}>
-                            <span>등록일: {new Date(data.registerDate).toLocaleString()}</span>
-                            <span>마지막 수정일: {new Date(data.updateDate).toLocaleString()}</span>
+                    <ReactModal
+                        isOpen={isModalOpen}
+                        onRequestClose={closeModal}
+                        style={{
+                            content: {
+                                boxSizing: 'border-box',
+                                transform: 'translate(-50%, -50%)',
+                                top: '50%',
+                                left: '50%',
+                                borderRadius: '30px',
+                                width: '700px',
+                                height: '700px',
+                                color: '#dbdbdb',
+                                backgroundColor: '#1b386a'
+                            }
+                        }}
+                    >
+                        <div css={s.modalBox}>
+                            <div css={s.dateBox}>
+                                <span>등록일: {new Date(data.registerDate).toLocaleString()}</span>
+                                <span>마지막 수정일: {new Date(data.updateDate).toLocaleString()}</span>
+                            </div>
+                            <div css={s.dataBox}>
+                                <p>문제: {data.question}</p>
+                                <p>정답: {data.answer}</p>
+                                <div>예제: {data.explainMemo}</div>
+                            </div>
+                            <div css={s.modalButtonBox}>
+                                <button onClick={closeModal}>닫기</button>
+                            </div>
                         </div>
-                        <div css={s.dataBox}>
-                            <p>문제: {data.question}</p>
-                            <p>정답: {data.answer}</p>
-                            <div>예제: {data.explainMemo}</div>
-                        </div>
-                        <div css={s.modalButtonBox}>
-                            <button onClick={closeModal}>닫기</button>
-                        </div>
-                    </div>
-                </ReactModal>
-
+                    </ReactModal>
             }
-            <ReactModal
-                isOpen={isModalOpen}
-                onRequestClose={closeModal}
-                style={{
-                    content: {
-                        boxSizing: 'border-box',
-                        transform: 'translate(-50%, -50%)',
-                        top: '50%',
-                        left: '50%',
-                        borderRadius: '30px',
-                        width: '700px',
-                        height: '700px',
-                        color: '#dbdbdb',
-                        backgroundColor: '#1b386a'
-                    }
-                }}
-            >
-                <div css={s.modalBox}>
-                    <p>문제</p>
-                    <p>정답</p>
-                    <div>예제</div>
-                    <div css={s.modalButtonBox}>
-                        <button onClick={closeModal}>닫기</button>
-                    </div>
-                </div>
-            </ReactModal>
-            <ReactModal
-                isOpen={isUpdateModalOpen}
-                onRequestClose={closeUpdateModal}
-                style={{
-                    content: {
-                        boxSizing: 'border-box',
-                        transform: 'translate(-50%, -50%)',
-                        top: '50%',
-                        left: '50%',
-                        borderRadius: '30px',
-                        width: '700px',
-                        height: '700px',
-                        color: '#dbdbdb',
-                        backgroundColor: '#1b386a'
-                    }
-                }}
-            >
-                <div css={s.updateModalBox}>
-                    <div>
-                        <h4>문제 수정하기</h4>
-                    </div>
-                    <span>문제:</span>
-                    <span>정답:</span>
-                    <span>예제:</span>
-                </div>
-            </ReactModal>
+            {
+                memoId === data.memoId &&
+                    <ReactModal 
+                        isOpen={isUpdateModalOpen}
+                        onRequestClose={closeUpdateModal}
+                        style={{
+                            content: {
+                                boxSizing: 'border-box',
+                                transform: 'translate(-50%, -50%)',
+                                top: '50%',
+                                left: '50%',
+                                borderRadius: '30px',
+                                width: '700px',
+                                height: '700px',
+                                color: '#dbdbdb',
+                                backgroundColor: '#1b386a'
+                            }
+                        }}
+                    >
+                        <div css={s.updateModalBox}>
+                            <div>
+                                <p>문제 수정하기</p>
+                            </div>
+                            <div css={s.updateModalAnswerBox}>
+
+                                <div css={s.coalescence}>
+                                    <span>문제:</span><input type="text" name='question' value={updateMemo.question} onChange={handleUpdateInputOnChange}/>
+                                </div>
+                                <div css={s.coalescence}>
+                                    <span>정답:</span><input type="text" name='answer' value={updateMemo.answer} onChange={handleUpdateInputOnChange}/>
+                                </div>
+                                <div css={s.coalescence}>
+                                    <span>예제:</span><input type="text" name='explainMemo' value={updateMemo.explainMemo} onChange={handleUpdateInputOnChange}/>
+                                </div>
+                            </div>
+                            <div css={s.updateButtonBox}>
+                                <button onClick={updateOkButton}>확인</button>
+                                <button onClick={closeUpdateModal}>취소</button>
+                            </div>
+                        </div>
+                    </ReactModal>
+            }
         </div>
     );
 }

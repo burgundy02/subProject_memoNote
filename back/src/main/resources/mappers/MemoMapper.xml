@@ -22,7 +22,7 @@
             explainMemo = #{explainMemo},
             updateDate = now()
         where
-            memoId = 1;
+            memoId = #{memoId};
     </update>
 
     <delete id="delete">
