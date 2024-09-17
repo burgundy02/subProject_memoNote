@@ -134,7 +134,7 @@ function Search(props) {
             </header>
             <div css={s.box}>
                 <div css={s.container}>
-                    {
+                    {   // 처음 들어갔을 때 나오는거
                         !errorMessage && !data && !noSearch &&
                         getAllQuestion?.data?.data.map(question => 
                             <GetMemos data={question}/>
@@ -145,7 +145,7 @@ function Search(props) {
                         <h2>{errorMessage}</h2>
                     }
 
-                    {
+                    {   // 검색했을 때 나오는거
                         data &&
                         data.map(d => (
                             <GetMemos data={d}/>
