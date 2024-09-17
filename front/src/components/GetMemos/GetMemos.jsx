@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
 import ReactModal from 'react-modal';
+import { deleteQuestionApi } from '../../apis/memoApi/memoApi';
 
-function GetMemos({data}) {
+function GetMemos({ data }) {
     const [isModalOpen, setModalOpen] = useState(false);
     // 수정 버튼 눌렀을 때 모달 오픈
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
@@ -19,6 +20,17 @@ function GetMemos({data}) {
     const handleUpdateOnClick = () => {
         setIsUpdateModalOpen(true);
     }
+    const handleDeleteOnClick = async () => {
+        if (!window.confirm("삭제 하시겠습니까? ")) {
+            return;
+        }
+        const response = await deleteQuestionApi(data.memoId);
+        if (!response.data) {
+            console.log(response);
+            alert("오류발생 다시시도 하세요");
+        }
+        alert("삭제 되었습니다!");
+    }
 
     const closeModal = () => {
         setModalOpen(false);
@@ -31,10 +43,10 @@ function GetMemos({data}) {
     return (
         <div>
             <div id={data.memoId} css={s.mainBox}>
-                <p onClick={() => handleQuestionOnClick(data.memoId)}>▫️{data.question}</p>
+                <p onClick={() => handleQuestionOnClick(data.memoId)}>{data.question}</p>
                 <div css={s.buttonBox}>
                     <button onClick={handleUpdateOnClick}>수정</button>
-                    <button>삭제</button>
+                    <button onClick={handleDeleteOnClick}>삭제</button>
                 </div>
             </div>
             {
@@ -71,13 +83,13 @@ function GetMemos({data}) {
                         </div>
                     </div>
                 </ReactModal>
-                
+
             }
             <ReactModal
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
                 style={{
-                    content: {  
+                    content: {
                         boxSizing: 'border-box',
                         transform: 'translate(-50%, -50%)',
                         top: '50%',
@@ -99,7 +111,7 @@ function GetMemos({data}) {
                     </div>
                 </div>
             </ReactModal>
-            <ReactModal 
+            <ReactModal
                 isOpen={isUpdateModalOpen}
                 onRequestClose={closeUpdateModal}
                 style={{
