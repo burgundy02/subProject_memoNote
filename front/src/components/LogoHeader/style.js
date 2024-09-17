@@ -22,7 +22,7 @@ export const header = css`
 
     & > div{
         box-sizing: border-box;
-        padding-right: 150px;
+        padding-right: 130px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -31,6 +31,7 @@ export const header = css`
     h3{
         width: 250px;
         width: 100%;
+        padding: 0 0 0 15px;
         display: flex;
         justify-content: center;
         cursor: pointer;
@@ -52,7 +53,7 @@ export const logo = css`
         margin-bottom: 15px;
         
         & > span {
-            margin: 0;
+            margin: -5px 0;
             font-size: 25px;
         }
     }
@@ -62,8 +63,9 @@ export const logoItems = css`
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    width: 300px;
+    width: 270px;
     height: 100%;
+    font-size: 24px;
     
     & > button{
         width: 100%;

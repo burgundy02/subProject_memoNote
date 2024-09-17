@@ -8,15 +8,17 @@ function LogoHeader(props) {
     const navigate = useNavigate();
     const location = useLocation();
     console.log(location.pathname);
-    
+
     return (
         <div css={s.layout}>
             <div css={s.header}>
                 <div>
                     <div css={s.logo}>
-                        <h3><span onClick={() => navigate("/")}>
-                            <span>me</span><span>mo</span>
-                        </span></h3>
+                        <h3>
+                            <span onClick={() => navigate("/")}>
+                                <span>me</span><span>mo</span>
+                            </span>
+                        </h3>
                     </div>
                     {
                         location.pathname === '/auth/sign'
