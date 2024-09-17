@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 
-
 export const reset = css`
             /* 글꼴 : https://fonts.google.com/selection/embed */
     @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');

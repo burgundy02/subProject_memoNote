@@ -51,7 +51,7 @@ public class MemoController {
         return ResponseEntity.ok().body(memoService.getSearchMemos(dto));
     }
 
-    //추가 및 삭제
+    //추가
     @Log
     @PostMapping("/memo")
     public ResponseEntity<?> addQuest(@RequestBody ReqRegisterTodoDto dto) {
@@ -59,9 +59,11 @@ public class MemoController {
         return ResponseEntity.ok().body(true);
     }
 
-    @DeleteMapping("/{memoId}")
-    public ResponseEntity<?> delete(@PathVariable("memoId") int memoId) {
-        return ResponseEntity.ok().body(memoService.deleteMemoById(memoId) ? "성공" : "실패");
+    // 삭제
+    @Log
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int memoId) {
+        return ResponseEntity.ok().body(memoService.deleteMemoById(memoId));
     }
 
 
