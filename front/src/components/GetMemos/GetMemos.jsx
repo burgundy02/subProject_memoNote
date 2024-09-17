@@ -67,8 +67,8 @@ function GetMemos({ data }) {
     }
 
     return (
-        <div>
-            <div id={data.memoId} css={s.mainBox}>
+        <div key={data.memoId} >
+            <div css={s.mainBox}>
                 <p onClick={() => handleQuestionOnClick(data.memoId)}>▫️{data.question}</p>
                 <div css={s.buttonBox}>
                     <button onClick={() => handleUpdateOnClick(data.memoId)}>수정</button>
