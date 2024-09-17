@@ -163,6 +163,7 @@ export const footer = css`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: default;
 
     font-size: 15px;
     ul{
