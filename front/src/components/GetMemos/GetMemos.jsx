@@ -25,13 +25,27 @@ function GetMemos({ data }) {
 
     // 모달에서 수정 완료 버튼
     const updateOkButton = async () => {
-        try {
+        try {                  
+            // trim(): 띄어쓰기를 제외한 문자열(띄어쓰기만 해서 수정완료하는 것을 방지하기 위해서 트림을 씀)
+            if(updateMemo.question.trim() === "") {
+                alert("문제를 입력해 주세요 ");
+                if(updateMemo.answer.trim() === "") {
+                    alert("정답을 입력해 주세요 ");
+                    return;
+                }
+                return;
+            }
+            if(updateMemo.answer.trim() === "") {
+                alert("정답을 입력해 주세요 ");
+                return;
+            }
             await instance.put("/memo", updateMemo);
             alert("수정이 완료 됐습니다");
             closeUpdateModal();
         } catch {
             alert("수정 중 오류가 발생했습니다.");
         }
+
     }
 
     // 수정 버튼 눌렀을 때 모달창 false에서 true로 띄우기
@@ -127,7 +141,8 @@ function GetMemos({ data }) {
                                 width: '700px',
                                 height: '700px',
                                 color: '#dbdbdb',
-                                backgroundColor: '#1b386a'
+                                backgroundColor: '#1b386a',
+                                overflowY: 'hidden'
                             }
                         }}
                     >
@@ -138,13 +153,16 @@ function GetMemos({ data }) {
                             <div css={s.updateModalAnswerBox}>
 
                                 <div css={s.coalescence}>
-                                    <span>문제:</span><input type="text" name='question' value={updateMemo.question} onChange={handleUpdateInputOnChange}/>
+                                    <span>문제:</span>
+                                    <textarea name="question" onChange={handleUpdateInputOnChange}  value={updateMemo.question}></textarea>
                                 </div>
                                 <div css={s.coalescence}>
-                                    <span>정답:</span><input type="text" name='answer' value={updateMemo.answer} onChange={handleUpdateInputOnChange}/>
+                                    <span>정답:</span>
+                                    <textarea name="answer" onChange={handleUpdateInputOnChange}  value={updateMemo.answer}></textarea>
                                 </div>
-                                <div css={s.coalescence}>
-                                    <span>예제:</span><input type="text" name='explainMemo' value={updateMemo.explainMemo} onChange={handleUpdateInputOnChange}/>
+                                <div css={s.coalescence3}>
+                                    <span>예제:</span>
+                                    <textarea name="explainMemo" onChange={handleUpdateInputOnChange}  value={updateMemo.explainMemo}></textarea>
                                 </div>
                             </div>
                             <div css={s.updateButtonBox}>

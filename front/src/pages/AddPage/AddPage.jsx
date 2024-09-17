@@ -82,7 +82,7 @@ function AddPage(props) {
                 <div css={s.inputBox2}>
                     <span>예제</span>
                     <div>
-                        <textarea name='explainMemo' onChange={handleInputOnChnage} value={questionInput.explainMemo} />
+                        <textarea name='explainMemo' onChange={handleInputOnChnage} value={questionInput.explainMemo} />    
                     </div>
                 </div>
             </div>
