@@ -22,19 +22,11 @@ function Search(props) {
     const [errorMessage, setErrorMessage] = useState("");
     const [data, setData] = useState(null);
 
-    const [searchType, setSearchType] = useState('all');  // 검색 유형
+    const [searchType, setSearchType] = useState("all");  // 검색 유형
 
-    const [memoId, setMemoId] = useState(0);
+    const [noSearch, setNoSearch] = useState("");
 
-    useEffect(() => {
-        setSearchMemo(memo => ({
-            ...memo,
-            question: "",
-            answer: "",
-            all: "",
-        }));
-        // console.log(searchMemo);
-    }, [searchType]);
+    // console.log(searchMemo);
 
     // useEffect(() => {
     //     // isSearchOpen 또는 다른 상태 변경 시 실행할 코드
@@ -85,7 +77,8 @@ function Search(props) {
             const response = await instance.get("/memo/search", {params: searchMemo});
 
             if (!response.data || response.data.length === 0) {
-                alert("조회 가능한 데이터가 없습니다")
+                setNoSearch("조회 가능한 데이터가 없습니다");
+                // alert("조회 가능한 데이터가 없습니다")
                 setData(null);  // 데이터 초기화
                 return;
             }
@@ -96,39 +89,16 @@ function Search(props) {
         }
     };
 
-    const handleEdit = (item, index) => {
+    // const handleEdit = (item, index) => {
 
-    };
+    // };
 
-    const handleDelete = (item, index) => {
-        console.log("삭제 버튼 클릭됨:", item);
-        const updatedData = data.filter((_, i) => i !== index);
-        setData(updatedData);
+    // const handleDelete = (item, index) => {
+    //     console.log("삭제 버튼 클릭됨:", item);
+    //     const updatedData = data.filter((_, i) => i !== index);
+    //     setData(updatedData);
 
-    };
-
-    // 모달에서 수정 완료 버튼
-    const updateOkButton = () => {
-
-    }
-
-    const handleQuestionOnClick = (memoId) => {
-        setMemoId(memoId);
-        setModalOpen(true);
-    }
-
-   // 수정 버튼 눌렀을 때 모달창 false에서 true로 띄우기
-    const handleUpdateOpenOnClick = () => {
-        setIsUpdateModalOpen(true);
-    }
-
-    const closeModal = () => {
-        setModalOpen(false);
-    }
-    // 수정 모달창 닫기
-    const closeUpdateModal = () => {
-        setIsUpdateModalOpen(false);
-    }
+    // };
 
     return (
         <div css={s.layout}>
@@ -137,6 +107,7 @@ function Search(props) {
                 <div css={s.searcInputhBox}>
                     <h4>검색어 </h4>
                     <input
+                        id='searchInput'
                         type="text"
                         name={searchType}
                         onChange={handleOnChange}
@@ -150,6 +121,7 @@ function Search(props) {
                             <SearchOptions
                                 searchType={searchType}
                                 setSearchType={setSearchType}
+                                setSearchMemo={setSearchMemo}
                             />
                     </div>
 
@@ -163,7 +135,7 @@ function Search(props) {
             <div css={s.box}>
                 <div css={s.container}>
                     {
-                        !errorMessage && !data &&
+                        !errorMessage && !data && !noSearch &&
                         getAllQuestion?.data?.data.map(question => 
                             <GetMemos data={question}/>
                         )
@@ -179,6 +151,10 @@ function Search(props) {
                             <GetMemos data={d}/>
                         ))
                         // <ScrollableResults data={data} onEdit={handleEdit} onDelete={handleDelete} />
+                    }
+                    {
+                        !data &&
+                        <h3>{noSearch}</h3>
                     }
                 </div>
             </div>
