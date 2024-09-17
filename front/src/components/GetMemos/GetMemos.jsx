@@ -53,11 +53,11 @@ function GetMemos({ data }) {
         setMemoId(memoId);
         setIsUpdateModalOpen(true);
     }
-    const handleDeleteOnClick = async () => {
+    const handleDeleteOnClick = async (memoId) => {
         if (!window.confirm("삭제 하시겠습니까? ")) {
             return;
         }
-        const response = await deleteQuestionApi(data.memoId);
+        const response = await deleteQuestionApi(memoId);
         if (!response.data) {
             console.log(response);
             alert("오류발생 다시시도 하세요");
