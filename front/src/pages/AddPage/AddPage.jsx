@@ -30,7 +30,7 @@ function AddPage(props) {
         const errorFieldMessage = {
             quest: "문제를 입력해주세요",
             answer: "정답 입력해주세요",
-            explainMemo: "설명을 입력해주세요",
+            // explainMemo: "설명을 입력해주세요",
         }
 
         for (let [key, value] of Object.entries(errorFieldMessage)) {
