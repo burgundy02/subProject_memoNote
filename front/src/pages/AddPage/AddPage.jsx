@@ -67,23 +67,17 @@ function AddPage(props) {
                 <h4>✏️문제 추가</h4>
             </div>
             <div css={s.box}>
-                <div css={s.inputBox1}>
+                <div css={s.inputSection}>
                     <span>문제</span>
-                    <div>
-                        <input name='quest' type="text" onChange={handleInputOnChnage} value={questionInput.quest} />
-                    </div>
+                    <input name='quest' type="text" onChange={handleInputOnChnage} value={questionInput.quest} />
                 </div>
-                <div css={s.inputBox1}>
+                <div css={s.inputSection}>
                     <span>정답</span>
-                    <div>
-                        <input name='answer' type="text" onChange={handleInputOnChnage} value={questionInput.answer} />
-                    </div>
+                    <input name='answer' type="text" onChange={handleInputOnChnage} value={questionInput.answer} />
                 </div>
                 <div css={s.inputBox2}>
-                    <span>예제</span>
-                    <div>
-                        <textarea name='explainMemo' onChange={handleInputOnChnage} value={questionInput.explainMemo} />    
-                    </div>
+                    <span>설명</span>
+                    <textarea name='explainMemo' onChange={handleInputOnChnage} value={questionInput.explainMemo} />
                 </div>
             </div>
             <div>
