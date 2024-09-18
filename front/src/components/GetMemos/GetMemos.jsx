@@ -118,7 +118,7 @@ function GetMemos({ data }) {
                             <div css={s.dataBox}>
                                 <p>문제: {data.question}</p>
                                 <p>정답: {data.answer}</p>
-                                <div>예제: {data.explainMemo}</div>
+                                <div>설명: {data.explainMemo}</div>
                             </div>
                             <div css={s.modalButtonBox}>
                                 <button onClick={closeModal}>닫기</button>
@@ -161,7 +161,7 @@ function GetMemos({ data }) {
                                     <textarea name="answer" onChange={handleUpdateInputOnChange}  value={updateMemo.answer}></textarea>
                                 </div>
                                 <div css={s.coalescence3}>
-                                    <span>예제:</span>
+                                    <span>설명:</span>
                                     <textarea name="explainMemo" onChange={handleUpdateInputOnChange}  value={updateMemo.explainMemo}></textarea>
                                 </div>
                             </div>

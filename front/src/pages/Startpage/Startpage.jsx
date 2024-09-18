@@ -77,7 +77,7 @@ function Startpage(props) {
                         <div css={s.middleBox2}>
                             <p>문제: {question?.data?.data.question}</p>
                             <p>정답: {question?.data?.data.answer}</p>
-                            <p>예제: {question?.data?.data.explainMemo}</p>
+                            <p>설명: {question?.data?.data.explainMemo}</p>
                         </div>
                         <div css={s.answerBox}>
                             <div >
