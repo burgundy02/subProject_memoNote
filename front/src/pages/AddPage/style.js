@@ -110,7 +110,7 @@ export const inputSection = css`
         border-bottom: 1px solid #dbdbdb;
 
         &:focus{
-            border-bottom: 2px solid #dbdbdb;
+            border-bottom: 3px solid #dbdbdb;
         }
     }
 

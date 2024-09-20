@@ -41,7 +41,7 @@ function Startpage(props) {
         <>
             <div css={s.buttonBox}> 
                 <button onClick={handleButtonOnClick}>뒤로</button>
-                <button onClick={handleRandomButtonOnClick}>다시 풀기</button>
+                <button onClick={handleRandomButtonOnClick}>다음 문제</button>
             </div>
             <div css={s.layout}>
                 {/* <div css={s.logoBox}>
@@ -50,6 +50,10 @@ function Startpage(props) {
                     </div>
                 </div> */}
                 {
+                    question.isError 
+                    ?
+                    <h4>서버와 연결이 되지않습니다.</h4>
+                    :
                     toggle === "question" ? 
                     <div css={s.mainBox} onClick={handleToggleOnClick}>
                         <div css={s.titleBox}>

@@ -134,6 +134,14 @@ function Search(props) {
             </header>
             <div css={s.box}>
                 <div css={s.container}>
+                    {
+                        getAllQuestion.isLoading &&
+                        <h4>로딩중...</h4>
+                    }
+                    {
+                        getAllQuestion.isError &&
+                        <h4>서버와 연결이 되지않습니다.</h4>
+                    }
                     {   // 처음 들어갔을 때 나오는거
                         !errorMessage && !data && !noSearch &&
                         getAllQuestion?.data?.data.map(question => 
@@ -154,7 +162,7 @@ function Search(props) {
                     }
                     {
                         !data &&
-                        <h3>{noSearch}</h3>
+                        <h4>{noSearch}</h4>
                     }
                 </div>
             </div>

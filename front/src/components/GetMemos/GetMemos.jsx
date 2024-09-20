@@ -4,8 +4,13 @@ import * as s from "./style";
 import ReactModal from 'react-modal';
 import { deleteQuestionApi } from '../../apis/memoApi/memoApi';
 import { instance } from '../../apis/util/instance';
+import { useQueryClient } from 'react-query';
 
 function GetMemos({ data }) {
+
+    const queryClient = useQueryClient();
+    const dataList = queryClient.getQueryData("getAllQuestionQuery");
+    
     const [isModalOpen, setModalOpen] = useState(false);
     // 수정 버튼 눌렀을 때 모달 오픈
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);

@@ -7,6 +7,7 @@ import LogoHeader from '../../components/LogoHeader/LogoHeader';
 
 function HomePage(props) {
     const navigate = useNavigate();
+
     return (
         <>
             <div css={s.layout}>
